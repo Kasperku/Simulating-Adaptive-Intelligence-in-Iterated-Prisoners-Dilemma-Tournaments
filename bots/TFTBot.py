@@ -1,6 +1,7 @@
 from typing import Optional
 
 from bots.BaseBot import BaseBot
+from strategies import COOPERATE
 
 
 class TFTBot(BaseBot):
@@ -17,7 +18,7 @@ class TFTBot(BaseBot):
     def choose_action(self, opponent_last_action: Optional[str] = None) -> str:
         if self.is_first_round:
             self.is_first_round = False
-            return "Cooperate"
+            return COOPERATE
         else:
             return opponent_last_action
 

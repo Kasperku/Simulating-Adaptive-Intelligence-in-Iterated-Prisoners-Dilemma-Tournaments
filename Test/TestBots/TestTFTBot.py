@@ -13,6 +13,7 @@ class TestTFTBot(unittest.TestCase):
         self.assertEqual(self.bot.choose_action(None), "Cooperate")
         self.assertEqual(self.bot.choose_action("Cooperate"), "Cooperate")
         self.assertEqual(self.bot.choose_action("Defect"), "Defect")
+        self.assertEqual(self.bot.choose_action("Cooperate"), "Cooperate")
 
     def test_reset(self):
         # Simulate the end of a round where the bot would defect

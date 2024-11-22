@@ -1,6 +1,7 @@
 from typing import Optional
 
 from bots.BaseBot import BaseBot
+from strategies import DEFECT
 
 
 class DefectBot(BaseBot):
@@ -13,4 +14,4 @@ class DefectBot(BaseBot):
 
     # always returns "Defect" regardless of opponent_last_action
     def choose_action(self, opponent_last_action: Optional[str] = None) -> str:
-        return "Defect"
+        return DEFECT

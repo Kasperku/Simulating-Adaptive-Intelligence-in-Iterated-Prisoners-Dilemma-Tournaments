@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="Test">
-      <change afterPath="$PROJECT_DIR$/Test/TestBots/TestTFTBot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/TestBots/TestDefectBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestBots/TestDefectBot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bots/TFTBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/bots/TFTBot.py" afterDir="false" />
+    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="Added TFTBot">
+      <change afterPath="$PROJECT_DIR$/bots/GrimBot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,21 +22,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Kasperku"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Kasperku&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Kasperku/AI_prisoners_dilemma.git",
-    "accountId": "52ecca89-36d1-42b9-8f11-562bc39ada62"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Kasperku/AI_prisoners_dilemma.git&quot;,
+    &quot;accountId&quot;: &quot;52ecca89-36d1-42b9-8f11-562bc39ada62&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2pA30B3V2hQJRbJz2esFKGBURdp" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -49,6 +47,7 @@
   "keyToString": {
     "Python tests.Python tests for TestCooperateBot.TestCooperateBot.test_reset.executor": "Run",
     "Python tests.Python tests for TestTFTBot.TestTFTBot.test_choose_action_always_mirror.executor": "Run",
+    "Python tests.Python tests for TestTFTBot.TestTFTBot.test_reset.executor": "Run",
     "Python tests.Python tests in TestCooperateBot.py.executor": "Run",
     "Python tests.Python tests in TestDefectBot.py.executor": "Run",
     "Python tests.Python tests in TestTFTBot.py.executor": "Run",
@@ -57,7 +56,7 @@
     "git-widget-placeholder": "main"
   }
 }]]></component>
-  <component name="RunManager" selected="Python tests.Python tests for TestTFTBot.TestTFTBot.test_choose_action_always_mirror">
+  <component name="RunManager" selected="Python tests.Python tests in TestTFTBot.py">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
@@ -110,7 +109,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in TestCooperateBot.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TestTFTBot.TestTFTBot.test_reset" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -121,8 +120,8 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/../AI Bot plays other bots in a prisoner\u0027s dilemma game/Test/TestBots/TestCooperateBot.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;TestTFTBot.TestTFTBot.test_reset&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Python tests in TestDefectBot.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
@@ -157,11 +156,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for TestTFTBot.TestTFTBot.test_choose_action_always_mirror" />
         <item itemvalue="Python tests.Python tests in TestTFTBot.py" />
+        <item itemvalue="Python tests.Python tests for TestTFTBot.TestTFTBot.test_reset" />
+        <item itemvalue="Python tests.Python tests for TestTFTBot.TestTFTBot.test_choose_action_always_mirror" />
         <item itemvalue="Python tests.Python tests in TestDefectBot.py" />
         <item itemvalue="Python tests.Python tests for TestCooperateBot.TestCooperateBot.test_reset" />
-        <item itemvalue="Python tests.Python tests in TestCooperateBot.py" />
       </list>
     </recent_temporary>
   </component>
@@ -197,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732196667530</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added TFTBot">
+      <option name="closed" value="true" />
+      <created>1732244594592</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732244594592</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -214,6 +221,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created BaseBot, CooperateBot and DefectBot" />
     <MESSAGE value="Test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test" />
+    <MESSAGE value="Added TFTBot" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added TFTBot" />
   </component>
 </project>

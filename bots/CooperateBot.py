@@ -1,6 +1,7 @@
 from typing import Optional
 
 from bots.BaseBot import BaseBot
+from strategies import COOPERATE
 
 
 class CooperateBot(BaseBot):
@@ -13,4 +14,4 @@ class CooperateBot(BaseBot):
 
     # always returns "Cooperate" regardless of opponent_last_action
     def choose_action(self, opponent_last_action: Optional[str] = None) -> str:
-        return "Cooperate"
+        return COOPERATE

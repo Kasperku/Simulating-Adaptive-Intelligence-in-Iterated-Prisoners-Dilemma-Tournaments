@@ -1,0 +1,2 @@
+COOPERATE = "Cooperate"
+DEFECT = "Defect"
