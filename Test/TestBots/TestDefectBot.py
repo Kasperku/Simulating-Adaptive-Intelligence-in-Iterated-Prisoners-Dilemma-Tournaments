@@ -9,7 +9,7 @@ class TestDefectBot(unittest.TestCase):
     def test_name(self):
         self.assertEqual(self.bot.name, "DefectBot")
 
-    def test_choose_action_always_cooperate(self):
+    def test_choose_action_always_defect(self):
         self.assertEqual(self.bot.choose_action("Cooperate"), "Defect")
         self.assertEqual(self.bot.choose_action("Defect"), "Defect")
         self.assertEqual(self.bot.choose_action(None), "Defect")
