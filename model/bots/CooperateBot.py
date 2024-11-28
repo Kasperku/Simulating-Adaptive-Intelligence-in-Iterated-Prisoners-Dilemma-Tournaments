@@ -1,7 +1,7 @@
 from typing import Optional
 
-from bots.BaseBot import BaseBot
-from strategies import COOPERATE
+from model.bots.BaseBot import BaseBot
+from model.constants import COOPERATE
 
 
 class CooperateBot(BaseBot):

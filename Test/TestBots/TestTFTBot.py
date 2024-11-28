@@ -1,5 +1,6 @@
 import unittest
-from bots.TFTBot import TFTBot
+from model.bots.TFTBot import TFTBot
+
 
 class TestTFTBot(unittest.TestCase):
 
@@ -21,6 +22,7 @@ class TestTFTBot(unittest.TestCase):
         self.assertEqual(self.bot.choose_action("Defect"), "Defect")
         self.bot.reset()
         self.assertEqual(self.bot.choose_action(None), "Cooperate")
+
 
 if __name__ == "__main__":
     unittest.main()

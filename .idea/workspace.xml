@@ -4,8 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="Added TFTBot">
-      <change afterPath="$PROJECT_DIR$/bots/GrimBot.py" afterDir="false" />
+    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="Added TFT90Bot">
+      <change afterPath="$PROJECT_DIR$/Test/TestQTable.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/QLearningAgent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/QTable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/TestBots/TestCooperateBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestBots/TestCooperateBot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/TestBots/TestDefectBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestBots/TestDefectBot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/TestBots/TestGrimBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestBots/TestGrimBot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/TestBots/TestTFT90Bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestBots/TestTFT90Bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/TestBots/TestTFTBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestBots/TestTFTBot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/BaseBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/BaseBot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/CooperateBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/CooperateBot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/DefectBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/DefectBot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/GrimBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/GrimBot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/TFT90Bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/TFT90Bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots/TFTBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/TFTBot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/strategies.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/constants.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,17 +61,27 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python tests.Python tests for TestCooperateBot.TestCooperateBot.test_reset.executor": "Run",
+    "Python tests.Python tests for TestQTable.TestQTable.executor": "Run",
+    "Python tests.Python tests for TestQTable.TestQTable.test_get_q_value_update.executor": "Run",
     "Python tests.Python tests for TestTFTBot.TestTFTBot.test_choose_action_always_mirror.executor": "Run",
     "Python tests.Python tests for TestTFTBot.TestTFTBot.test_reset.executor": "Run",
+    "Python tests.Python tests in Test90TFT.py.executor": "Run",
     "Python tests.Python tests in TestCooperateBot.py.executor": "Run",
     "Python tests.Python tests in TestDefectBot.py.executor": "Run",
+    "Python tests.Python tests in TestGrimBot.py.executor": "Run",
+    "Python tests.Python tests in TestTFT90Bot.py.executor": "Run",
     "Python tests.Python tests in TestTFTBot.py.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main"
   }
 }]]></component>
-  <component name="RunManager" selected="Python tests.Python tests in TestTFTBot.py">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/model" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests for TestQTable.TestQTable">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
@@ -79,52 +104,52 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TestCooperateBot.TestCooperateBot.test_reset" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TestQTable.TestQTable" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/TestBots" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TestCooperateBot.TestCooperateBot.test_reset&quot;" />
+      <option name="_new_target" value="&quot;TestQTable.TestQTable&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TestTFTBot.TestTFTBot.test_choose_action_always_mirror" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TestQTable.TestQTable.test_get_q_value_initial" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/TestBots" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TestTFTBot.TestTFTBot.test_choose_action_always_mirror&quot;" />
+      <option name="_new_target" value="&quot;TestQTable.TestQTable.test_get_q_value_initial&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TestTFTBot.TestTFTBot.test_reset" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TestQTable.TestQTable.test_get_q_value_update" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/TestBots" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TestTFTBot.TestTFTBot.test_reset&quot;" />
+      <option name="_new_target" value="&quot;TestQTable.TestQTable.test_get_q_value_update&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in TestDefectBot.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in TestTFT90Bot.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -135,7 +160,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/../AI Bot plays other bots in a prisoner\u0027s dilemma game/Test/TestBots/TestDefectBot.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/../AI Bot plays other bots in a prisoner\u0027s dilemma game/Test/TestBots/TestTFT90Bot.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -156,11 +181,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for TestQTable.TestQTable" />
+        <item itemvalue="Python tests.Python tests for TestQTable.TestQTable.test_get_q_value_initial" />
+        <item itemvalue="Python tests.Python tests for TestQTable.TestQTable.test_get_q_value_update" />
+        <item itemvalue="Python tests.Python tests in TestTFT90Bot.py" />
         <item itemvalue="Python tests.Python tests in TestTFTBot.py" />
-        <item itemvalue="Python tests.Python tests for TestTFTBot.TestTFTBot.test_reset" />
-        <item itemvalue="Python tests.Python tests for TestTFTBot.TestTFTBot.test_choose_action_always_mirror" />
-        <item itemvalue="Python tests.Python tests in TestDefectBot.py" />
-        <item itemvalue="Python tests.Python tests for TestCooperateBot.TestCooperateBot.test_reset" />
       </list>
     </recent_temporary>
   </component>
@@ -204,7 +229,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732244594592</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Addded Grim Bot">
+      <option name="closed" value="true" />
+      <created>1732263867877</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732263867877</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added TFT90Bot">
+      <option name="closed" value="true" />
+      <created>1732264600377</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732264600377</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -222,6 +263,8 @@
     <MESSAGE value="Created BaseBot, CooperateBot and DefectBot" />
     <MESSAGE value="Test" />
     <MESSAGE value="Added TFTBot" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added TFTBot" />
+    <MESSAGE value="Addded Grim Bot" />
+    <MESSAGE value="Added TFT90Bot" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added TFT90Bot" />
   </component>
 </project>

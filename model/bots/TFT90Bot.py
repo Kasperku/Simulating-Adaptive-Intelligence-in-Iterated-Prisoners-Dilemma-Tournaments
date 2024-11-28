@@ -1,7 +1,7 @@
 import random
 from typing import Optional
-from bots.BaseBot import BaseBot
-from strategies import COOPERATE, DEFECT
+from model.bots.BaseBot import BaseBot
+from model.constants import COOPERATE, DEFECT
 
 class TFT90Bot(BaseBot):
     """

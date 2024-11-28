@@ -1,6 +1,7 @@
 import unittest
-from bots.TFT90Bot import TFT90Bot
-from strategies import COOPERATE, DEFECT
+from model.bots.TFT90Bot import TFT90Bot
+from model.constants import COOPERATE, DEFECT
+
 
 class TestTFT90Bot(unittest.TestCase):
 
@@ -45,6 +46,7 @@ class TestTFT90Bot(unittest.TestCase):
 
         # Ensure it cooperates again in the first round of the new match
         self.assertEqual(self.bot.choose_action(None), COOPERATE)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,5 +1,6 @@
 import unittest
-from bots.GrimBot import GrimBot
+from model.bots.GrimBot import GrimBot
+
 
 class TestGrimBot(unittest.TestCase):
 
@@ -25,6 +26,7 @@ class TestGrimBot(unittest.TestCase):
 
         # Should cooperate again after reset
         self.assertEqual(self.bot.choose_action(None), "Cooperate")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,5 +1,6 @@
 import unittest
-from bots.CooperateBot import CooperateBot
+from model.bots.CooperateBot import CooperateBot
+
 
 class TestCooperateBot(unittest.TestCase):
 
@@ -18,6 +19,7 @@ class TestCooperateBot(unittest.TestCase):
         self.bot.reset()
         self.assertEqual(self.bot.choose_action("Cooperate"), "Cooperate")
         self.assertEqual(self.bot.choose_action("Defect"), "Cooperate")
+
 
 if __name__ == "__main__":
     unittest.main()

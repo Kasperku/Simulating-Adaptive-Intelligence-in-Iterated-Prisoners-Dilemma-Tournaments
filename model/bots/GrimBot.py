@@ -1,7 +1,7 @@
 from typing import Optional
 
-from bots.BaseBot import BaseBot
-from strategies import DEFECT, COOPERATE
+from model.bots.BaseBot import BaseBot
+from model.constants import DEFECT, COOPERATE
 
 
 class GrimBot(BaseBot):
