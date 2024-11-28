@@ -36,3 +36,33 @@ class QTable:
             float: The Q-value for the state-action pair.
         """
         return self.table[state][action]
+
+    def update_q_value(self, state: str, action: str,
+                       learning_rate: float, immediate_reward: float,
+                       discount_factor: float, next_state: str):
+        """
+        Updates the Q-value for a specific state-action pair using the Bellman equation.
+        𝑄(𝑠,𝑎)←𝑄(𝑠,𝑎)+𝛼[𝑟+𝛾max⁡𝑄(𝑠′,𝑎′)−𝑄(𝑠,𝑎)]
+
+        Args:
+            state (str): The current state.
+            action (str): The action taken.
+            learning_rate (float): The learning rate (alpha).
+            immediate_reward (float): The immediate reward received.
+            discount_factor (float): The discount factor (gamma).
+            next_state (str): The next state observed after taking the action.
+
+        Returns:
+            None: Updates the Q-table in-place.
+        """
+
+        current_q_value = self.get_q_value(state, action)
+        max_future_q_value = max(self.table[next_state].values())
+
+        # By the bellman equation
+        new_q_value = current_q_value + learning_rate * (
+                immediate_reward + (discount_factor * max_future_q_value) - current_q_value
+        )
+
+        # Update the QTable
+        self.table[state][action] = new_q_value

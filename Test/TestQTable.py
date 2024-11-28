@@ -17,9 +17,21 @@ class TestQTable(unittest.TestCase):
                 self.assertEqual(0.0, self.QTable.get_q_value(state, action))
 
     def test_get_q_value_update(self):
-
         self.QTable.table[COOPERATE][DEFECT] = 1.5
         self.assertEqual(1.5, self.QTable.get_q_value(COOPERATE, DEFECT))
+
+    def test_update_q_value(self):
+        self.QTable.table[DEFECT][COOPERATE] = 2.0
+        self.QTable.table[DEFECT][DEFECT] = 1.5
+        lr = 0.1
+        ir = 5
+        df = 0.9
+
+        self.QTable.update_q_value(COOPERATE, DEFECT, lr, ir, df, DEFECT)
+
+        # Expected q value
+        expected_new_q = 0.0 + lr * (ir + (df * max(2.0, 1.5)) - 0.0)
+        self.assertEqual(expected_new_q, self.QTable.get_q_value(COOPERATE, DEFECT))
 
 
 if __name__ == "__main__":
