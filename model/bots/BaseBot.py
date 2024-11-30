@@ -16,6 +16,6 @@ class BaseBot:
         raise NotImplementedError("This method should be overridden by subclasses")
 
     # resets the internal state of the bot to its initial condition
-    def reset(self):
+    def reset(self) -> None:
         """Resets the bot's state for a new round."""
         pass
