@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="Added the variables of bellman equation to constants.py">
-      <change afterPath="$PROJECT_DIR$/Test/TestQLearningAgent.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/QLearningAgent.py" afterDir="false" />
+    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="Updated specifications for QLearningAgent.py">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/QLearningAgent.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/QLearningAgent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/QTable.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/QTable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/bots/BaseBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/BaseBot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/bots/TFTBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/TFTBot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +39,9 @@
     &quot;accountId&quot;: &quot;52ecca89-36d1-42b9-8f11-562bc39ada62&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file:///Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/typing.py" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -67,7 +73,8 @@
     "Python tests.Python tests in TestTFTBot.py.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -271,7 +278,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732934988172</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Updated specifications for QLearningAgent.py">
+      <option name="closed" value="true" />
+      <created>1734935142397</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1734935142397</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -295,6 +310,7 @@
     <MESSAGE value="Wrote test and implemented QTable.py constructor and get_q_value method." />
     <MESSAGE value="Wrote test and Implemented Update_q_value method in QTable.py" />
     <MESSAGE value="Added the variables of bellman equation to constants.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the variables of bellman equation to constants.py" />
+    <MESSAGE value="Updated specifications for QLearningAgent.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated specifications for QLearningAgent.py" />
   </component>
 </project>

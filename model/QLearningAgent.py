@@ -1,3 +1,4 @@
+import random
 from typing import Dict, List
 from model.QTable import QTable
 from model.constants import COOPERATE, DEFECT, LEARNING_RATE, DISCOUNT_FACTOR, DEFAULT_EXPLORATION_RATE
@@ -23,7 +24,7 @@ class QLearningAgent:
     def __init__(self, learning_rate: float = LEARNING_RATE,
                  discount_factor: float = DISCOUNT_FACTOR,
                  exploration_rate: float = DEFAULT_EXPLORATION_RATE,
-                 actions: List[str] = None):
+                 actions: List[str] = []):
         self.learning_rate = learning_rate
         self.discount_factor = discount_factor
         self.exploration_rate = exploration_rate
@@ -36,6 +37,18 @@ class QLearningAgent:
         # the key of the dictionary str is the NAME of the BOT
         # the value is the QTable for that specific opponent
         self.QTables: Dict[str, QTable] = {}
+
+    def get_learning_rate(self):
+        return self.learning_rate
+
+    def get_discount_factor(self):
+        return self.discount_factor
+
+    def get_exploration_rate(self):
+        return self.exploration_rate
+
+    def get_qtables(self):
+        return self.QTables
 
     def initialize_q_table_for_opponent(self, opponent_name: str):
         """
@@ -62,14 +75,6 @@ class QLearningAgent:
         """
         Retrieves the Q-value for a specific opponent, state, and action.
         Initializes a QTable for the opponent if it does not exist.
-
-        Args:
-            opponent_name (str): The opponent's name.
-            state (str): The current state.
-            action (str): The action taken.
-
-        Returns:
-            float: The Q-value for the state-action pair.
         """
 
         if opponent_name not in self.QTables:
@@ -77,6 +82,12 @@ class QLearningAgent:
 
         # Retrieve the Q-value from the QTable
         return self.QTables[opponent_name].get_q_value(state, action)
+
+
+
+
+
+
 
     """
     Selects an action for the agent using the ε-greedy policy.
@@ -86,8 +97,51 @@ class QLearningAgent:
         state (str): The current state (e.g., the opponent's last move).
 
     Returns:
-        str: The action selected ("COOPERATE" or "DEFECT").
+        str: The action that yields the highest payoff, either one if tie
     """
-    def choose_action(self, opponent_name, state):
-        return
 
+    def choose_action(self, opponent_name, state):
+        table = self.get_qtables().get(opponent_name)
+
+        if random.random() < self.get_exploration_rate():
+            return random.choice([COOPERATE, DEFECT])
+        else:
+            best_actions = self.choose_best_action(opponent_name, state)
+            return random.choice(best_actions)
+
+    """
+    HELPER FUNC for choose_best_action
+    Returns:
+        List[str]; List of actions that yield max payoff
+    """
+    def choose_best_action(self, opponent_name: str, state: str) -> List[str]:
+        table = self.get_qtables().get(opponent_name)
+        defect_payoff = table.get_q_value(state, DEFECT)
+        cooperate_payoff = table.get_q_value(state, COOPERATE)
+        best_actions = []
+
+        if defect_payoff <= cooperate_payoff:
+            best_actions.append(COOPERATE)
+        if defect_payoff >= cooperate_payoff:
+            best_actions.append(DEFECT)
+
+        return best_actions
+
+    """
+    Updates the Q-value for a state-action pair using the Q-learning formula.
+
+    Args:
+        opponent_name (str): The name of the opponent.
+        state (str): The current state.
+        action (str): The action taken.
+        reward (float): The immediate reward received.
+        next_state (str): The state resulting from the action.
+    returns:
+        none
+    """
+    def update_q_value(self, opponent_name: str, state: str, action: str,
+                       reward: float, next_state: str):
+        return None
+
+    def decay_exploration_rate(self, decay_factor: float):
+        return None

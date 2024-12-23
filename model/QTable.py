@@ -23,17 +23,14 @@ class QTable:
         self.table: Dict[str, Dict[str, float]] = {
             state: {action: 0.0 for action in actions} for state in states
         }
+    
+    def get_table(self) -> dict: 
+        return self.table
+        
 
     def get_q_value(self, state: str, action: str) -> float:
         """
         Retrieves the Q-value for a specific state-action pair.
-
-        Args:
-            state (str): The current state.
-            action (str): The action taken.
-
-        Returns:
-            float: The Q-value for the state-action pair.
         """
         return self.table[state][action]
 

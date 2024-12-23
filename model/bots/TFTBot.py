@@ -15,7 +15,7 @@ class TFTBot(BaseBot):
         self.is_first_round = True # check whether it is the start of a round
 
     # returns "Cooperate" if first move, then copies opponents last move.
-    def choose_action(self, opponent_last_action: Optional[str] = None) -> str:
+    def choose_action(self, opponent_last_action: str) -> str:
         if self.is_first_round:
             self.is_first_round = False
             return COOPERATE
@@ -24,3 +24,4 @@ class TFTBot(BaseBot):
 
     def reset(self):
         self.is_first_round = True
+
