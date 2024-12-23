@@ -4,23 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="Added TFT90Bot">
-      <change afterPath="$PROJECT_DIR$/Test/TestQTable.py" afterDir="false" />
+    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="Added the variables of bellman equation to constants.py">
+      <change afterPath="$PROJECT_DIR$/Test/TestQLearningAgent.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/model/QLearningAgent.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/QTable.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/TestBots/TestCooperateBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestBots/TestCooperateBot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/TestBots/TestDefectBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestBots/TestDefectBot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/TestBots/TestGrimBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestBots/TestGrimBot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/TestBots/TestTFT90Bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestBots/TestTFT90Bot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/TestBots/TestTFTBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestBots/TestTFTBot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bots/BaseBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/BaseBot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bots/CooperateBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/CooperateBot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bots/DefectBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/DefectBot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bots/GrimBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/GrimBot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bots/TFT90Bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/TFT90Bot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bots/TFTBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/TFTBot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/strategies.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/constants.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,14 +48,21 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python tests.Python tests for TestCooperateBot.TestCooperateBot.test_reset.executor": "Run",
+    "Python tests.Python tests for TestQLearningAgent.TestQLearningAgent.executor": "Run",
+    "Python tests.Python tests for TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_for_opponent.executor": "Run",
+    "Python tests.Python tests for TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_twice.executor": "Run",
     "Python tests.Python tests for TestQTable.TestQTable.executor": "Run",
+    "Python tests.Python tests for TestQTable.TestQTable.test_get_q_value_initial.executor": "Run",
     "Python tests.Python tests for TestQTable.TestQTable.test_get_q_value_update.executor": "Run",
+    "Python tests.Python tests for TestQTable.TestQTable.test_update_q_value.executor": "Run",
     "Python tests.Python tests for TestTFTBot.TestTFTBot.test_choose_action_always_mirror.executor": "Run",
     "Python tests.Python tests for TestTFTBot.TestTFTBot.test_reset.executor": "Run",
     "Python tests.Python tests in Test90TFT.py.executor": "Run",
     "Python tests.Python tests in TestCooperateBot.py.executor": "Run",
     "Python tests.Python tests in TestDefectBot.py.executor": "Run",
     "Python tests.Python tests in TestGrimBot.py.executor": "Run",
+    "Python tests.Python tests in TestQLearningAgent.py.executor": "Run",
+    "Python tests.Python tests in TestQTable.py.executor": "Run",
     "Python tests.Python tests in TestTFT90Bot.py.executor": "Run",
     "Python tests.Python tests in TestTFTBot.py.executor": "Run",
     "Python.main.executor": "Run",
@@ -81,7 +75,7 @@
       <recent name="$PROJECT_DIR$/model" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for TestQTable.TestQTable">
+  <component name="RunManager" selected="Python tests.Python tests in TestQLearningAgent.py">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
@@ -104,7 +98,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TestQTable.TestQTable" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TestQLearningAgent.TestQLearningAgent" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -115,11 +109,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TestQTable.TestQTable&quot;" />
+      <option name="_new_target" value="&quot;TestQLearningAgent.TestQLearningAgent&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TestQTable.TestQTable.test_get_q_value_initial" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_for_opponent" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -130,11 +124,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TestQTable.TestQTable.test_get_q_value_initial&quot;" />
+      <option name="_new_target" value="&quot;TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_for_opponent&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TestQTable.TestQTable.test_get_q_value_update" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_twice" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -145,47 +139,47 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TestQTable.TestQTable.test_get_q_value_update&quot;" />
+      <option name="_new_target" value="&quot;TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_twice&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in TestTFT90Bot.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in TestQLearningAgent.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/TestBots" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/../AI Bot plays other bots in a prisoner\u0027s dilemma game/Test/TestBots/TestTFT90Bot.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/../AI Bot plays other bots in a prisoner\u0027s dilemma game/Test/TestQLearningAgent.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in TestTFTBot.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in TestQTable.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/TestBots" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/../AI Bot plays other bots in a prisoner\u0027s dilemma game/Test/TestBots/TestTFTBot.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/../AI Bot plays other bots in a prisoner\u0027s dilemma game/Test/TestQTable.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for TestQTable.TestQTable" />
-        <item itemvalue="Python tests.Python tests for TestQTable.TestQTable.test_get_q_value_initial" />
-        <item itemvalue="Python tests.Python tests for TestQTable.TestQTable.test_get_q_value_update" />
-        <item itemvalue="Python tests.Python tests in TestTFT90Bot.py" />
-        <item itemvalue="Python tests.Python tests in TestTFTBot.py" />
+        <item itemvalue="Python tests.Python tests in TestQLearningAgent.py" />
+        <item itemvalue="Python tests.Python tests in TestQTable.py" />
+        <item itemvalue="Python tests.Python tests for TestQLearningAgent.TestQLearningAgent" />
+        <item itemvalue="Python tests.Python tests for TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_for_opponent" />
+        <item itemvalue="Python tests.Python tests for TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_twice" />
       </list>
     </recent_temporary>
   </component>
@@ -245,7 +239,39 @@
       <option name="project" value="LOCAL" />
       <updated>1732264600377</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Formatted and cleaned up code. No change in code content">
+      <option name="closed" value="true" />
+      <created>1732790581120</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1732790581120</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Wrote test and implemented QTable.py constructor and get_q_value method.">
+      <option name="closed" value="true" />
+      <created>1732790619733</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732790619733</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Wrote test and Implemented Update_q_value method in QTable.py">
+      <option name="closed" value="true" />
+      <created>1732792594417</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732792594417</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added the variables of bellman equation to constants.py">
+      <option name="closed" value="true" />
+      <created>1732934988172</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1732934988172</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -265,6 +291,10 @@
     <MESSAGE value="Added TFTBot" />
     <MESSAGE value="Addded Grim Bot" />
     <MESSAGE value="Added TFT90Bot" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added TFT90Bot" />
+    <MESSAGE value="Formatted and cleaned up code. No change in code content" />
+    <MESSAGE value="Wrote test and implemented QTable.py constructor and get_q_value method." />
+    <MESSAGE value="Wrote test and Implemented Update_q_value method in QTable.py" />
+    <MESSAGE value="Added the variables of bellman equation to constants.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the variables of bellman equation to constants.py" />
   </component>
 </project>
