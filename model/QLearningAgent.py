@@ -69,7 +69,7 @@ class QLearningAgent:
             opponent_name (str): The name of the opponent (e.g., "TFTBot").
         """
         if opponent_name not in self.QTables:
-            self.QTables[opponent_name] = QTable(states=self.actions, actions=self.actions)
+            self.get_qtables()[opponent_name] = QTable(states=self.actions, actions=self.actions)
 
     def get_q_value(self, opponent_name: str, state: str, action: str) -> float:
         """
@@ -82,12 +82,6 @@ class QLearningAgent:
 
         # Retrieve the Q-value from the QTable
         return self.QTables[opponent_name].get_q_value(state, action)
-
-
-
-
-
-
 
     """
     Selects an action for the agent using the ε-greedy policy.
@@ -114,6 +108,7 @@ class QLearningAgent:
     Returns:
         List[str]; List of actions that yield max payoff
     """
+
     def choose_best_action(self, opponent_name: str, state: str) -> List[str]:
         table = self.get_qtables().get(opponent_name)
         defect_payoff = table.get_q_value(state, DEFECT)
@@ -141,7 +136,13 @@ class QLearningAgent:
     """
     def update_q_value(self, opponent_name: str, state: str, action: str,
                        reward: float, next_state: str):
-        return None
+
+        table = self.get_qtables()[opponent_name]
+
+        table.update_q_value(state, action, self.get_learning_rate(), reward,
+                             self.get_discount_factor(), next_state)
+
+
 
     def decay_exploration_rate(self, decay_factor: float):
         return None
