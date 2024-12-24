@@ -1,6 +1,6 @@
 import unittest
 
-from model.constants import COOPERATE, DEFECT
+from model.constants import COOPERATE, DEFECT, LEARNING_RATE, DISCOUNT_FACTOR
 from model.QTable import QTable
 
 
@@ -23,9 +23,9 @@ class TestQTable(unittest.TestCase):
     def test_update_q_value(self):
         self.QTable.table[DEFECT][COOPERATE] = 2.0
         self.QTable.table[DEFECT][DEFECT] = 1.5
-        lr = 0.1
+        lr = LEARNING_RATE
         ir = 5
-        df = 0.9
+        df = DISCOUNT_FACTOR
 
         self.QTable.update_q_value(COOPERATE, DEFECT, lr, ir, df, DEFECT)
 

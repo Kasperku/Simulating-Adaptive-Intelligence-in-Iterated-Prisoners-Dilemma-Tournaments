@@ -54,7 +54,7 @@ class QTable:
         """
 
         current_q_value = self.get_q_value(state, action)
-        max_future_q_value = max(self.table[next_state].values())
+        max_future_q_value = max(self.get_table()[next_state].values())
 
         # By the bellman equation
         new_q_value = current_q_value + learning_rate * (
@@ -62,4 +62,5 @@ class QTable:
         )
 
         # Update the QTable
-        self.table[state][action] = new_q_value
+        self.get_table()[state][action] = new_q_value
+

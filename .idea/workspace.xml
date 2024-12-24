@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="Updated specifications for QLearningAgent.py">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="Implemented method choose_action under QLearningAgent.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/TestQLearningAgent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestQLearningAgent.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/QLearningAgent.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/QLearningAgent.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/QTable.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/QTable.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/bots/BaseBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/BaseBot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/bots/TFTBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bots/TFTBot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/constants.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +56,7 @@
     "Python tests.Python tests for TestQLearningAgent.TestQLearningAgent.executor": "Run",
     "Python tests.Python tests for TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_for_opponent.executor": "Run",
     "Python tests.Python tests for TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_twice.executor": "Run",
+    "Python tests.Python tests for TestQLearningAgent.TestQLearningAgent.test_update_q_value.executor": "Run",
     "Python tests.Python tests for TestQTable.TestQTable.executor": "Run",
     "Python tests.Python tests for TestQTable.TestQTable.test_get_q_value_initial.executor": "Run",
     "Python tests.Python tests for TestQTable.TestQTable.test_get_q_value_update.executor": "Run",
@@ -135,7 +135,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_twice" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TestQLearningAgent.TestQLearningAgent.test_update_q_value" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="AI Bot plays other bots in a prisoner's dilemma game" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -146,7 +146,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_twice&quot;" />
+      <option name="_new_target" value="&quot;TestQLearningAgent.TestQLearningAgent.test_update_q_value&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -183,10 +183,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Python tests in TestQLearningAgent.py" />
+        <item itemvalue="Python tests.Python tests for TestQLearningAgent.TestQLearningAgent.test_update_q_value" />
         <item itemvalue="Python tests.Python tests in TestQTable.py" />
         <item itemvalue="Python tests.Python tests for TestQLearningAgent.TestQLearningAgent" />
         <item itemvalue="Python tests.Python tests for TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_for_opponent" />
-        <item itemvalue="Python tests.Python tests for TestQLearningAgent.TestQLearningAgent.test_initialize_q_table_twice" />
       </list>
     </recent_temporary>
   </component>
@@ -286,7 +286,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734935142397</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Implemented method choose_action under QLearningAgent.py">
+      <option name="closed" value="true" />
+      <created>1734950614037</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1734950614037</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -311,6 +319,7 @@
     <MESSAGE value="Wrote test and Implemented Update_q_value method in QTable.py" />
     <MESSAGE value="Added the variables of bellman equation to constants.py" />
     <MESSAGE value="Updated specifications for QLearningAgent.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated specifications for QLearningAgent.py" />
+    <MESSAGE value="Implemented method choose_action under QLearningAgent.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented method choose_action under QLearningAgent.py" />
   </component>
 </project>
