@@ -47,6 +47,11 @@ class QLearningAgent:
     def get_exploration_rate(self):
         return self.exploration_rate
 
+    def set_exploration_rate(self, exploration_rate):
+        if not (0.0 <= exploration_rate <= 1.0):
+            raise ValueError("Exploration rate must be between 0 and 1")
+        self.exploration_rate = exploration_rate
+
     def get_qtables(self):
         return self.QTables
 
@@ -144,5 +149,5 @@ class QLearningAgent:
 
 
 
-    def decay_exploration_rate(self, decay_factor: float):
-        return None
+    def decay_exploration_rate(self, decay_rate: float):
+        self.set_exploration_rate(self.get_exploration_rate()*decay_rate)

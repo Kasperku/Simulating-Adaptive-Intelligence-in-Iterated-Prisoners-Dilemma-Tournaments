@@ -1,10 +1,8 @@
 import unittest
 
-
 from model.QTable import QTable
 from model.QLearningAgent import QLearningAgent
-from model.constants import COOPERATE, DEFECT, LEARNING_RATE, DISCOUNT_FACTOR
-
+from model.constants import *
 
 
 class TestQLearningAgent(unittest.TestCase):
@@ -109,7 +107,8 @@ class TestQLearningAgent(unittest.TestCase):
 
         # Mock Q-values, the reward for COOPERATE(10) > DEFECT
         self.agent.QTables[opponent_name].update_q_value(COOPERATE, DEFECT, LEARNING_RATE, 5, DISCOUNT_FACTOR, DEFECT)
-        self.agent.QTables[opponent_name].update_q_value(COOPERATE, COOPERATE, LEARNING_RATE, 10, DISCOUNT_FACTOR, DEFECT)
+        self.agent.QTables[opponent_name].update_q_value(COOPERATE, COOPERATE, LEARNING_RATE, 10, DISCOUNT_FACTOR,
+                                                         DEFECT)
 
         # Ensure the agent can exploit (choose the best action) when exploration_rate = 0
         self.agent.exploration_rate = 0.0
@@ -141,7 +140,25 @@ class TestQLearningAgent(unittest.TestCase):
 
         # Verify Q-value after agent update
         updated_value = self.agent.get_q_value(opponent_name, state=COOPERATE, action=DEFECT)
-        self.assertAlmostEqual(updated_value, (0.5+0.1*(10+0.9*0.5-0.5)), 5)
+        self.assertAlmostEqual(updated_value, (0.5 + 0.1 * (10 + 0.9 * 0.5 - 0.5)), 5)
+
+    def test_exploration_rate_init(self):
+        # exploration rate initialized to 1.0
+        self.assertEqual(self.agent.get_exploration_rate(), DEFAULT_EXPLORATION_RATE)
+
+    def test_exploration_rate_invalid(self):
+        # raise ValueError if out of range
+        with self.assertRaises(ValueError):
+            self.agent.set_exploration_rate(1.1)
+
+    def test_exploration_rate_decay(self):
+        # check that init exploration rate is default exploration rate
+        self.assertEqual(self.agent.get_exploration_rate(), DEFAULT_EXPLORATION_RATE)
+
+        # Decay once
+        self.agent.decay_exploration_rate(DECAY_RATE)
+        self.assertAlmostEqual(DEFAULT_EXPLORATION_RATE*DECAY_RATE, self.agent.get_exploration_rate(), 5)
+
 
 
 if __name__ == "__main__":
