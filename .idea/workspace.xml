@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="implemented update_q_value for QLearningAgent.py">
+    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="implemented exploration_decay for QLearningAgent.py">
+      <change afterPath="$PROJECT_DIR$/model/tournament/MatchSimulator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/tournament/ResultManager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/tournament/tournament.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/TestQLearningAgent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestQLearningAgent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/QLearningAgent.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/QLearningAgent.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/constants.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -313,7 +314,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735035345493</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="implemented exploration_decay for QLearningAgent.py">
+      <option name="closed" value="true" />
+      <created>1735037345019</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1735037345019</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -341,6 +350,7 @@
     <MESSAGE value="Implemented method choose_action under QLearningAgent.py" />
     <MESSAGE value="Basic refactoring" />
     <MESSAGE value="implemented update_q_value for QLearningAgent.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented update_q_value for QLearningAgent.py" />
+    <MESSAGE value="implemented exploration_decay for QLearningAgent.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented exploration_decay for QLearningAgent.py" />
   </component>
 </project>
