@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="implemented exploration_decay for QLearningAgent.py">
-      <change afterPath="$PROJECT_DIR$/model/tournament/MatchSimulator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/tournament/ResultManager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/tournament/tournament.py" afterDir="false" />
+    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="Implemented specifications and method stubs to ResultManager.py">
+      <change afterPath="$PROJECT_DIR$/Test/TestTournament/TestTournament.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/constants.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -322,7 +319,31 @@
       <option name="project" value="LOCAL" />
       <updated>1735037345019</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Implemented specifications and method stubs to tournament.py">
+      <option name="closed" value="true" />
+      <created>1735096349209</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1735096349209</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Implemented specifications and method stubs to MatchSimulator.py">
+      <option name="closed" value="true" />
+      <created>1735096357975</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1735096357975</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Implemented specifications and method stubs to ResultManager.py">
+      <option name="closed" value="true" />
+      <created>1735096368315</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1735096368315</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -351,6 +372,9 @@
     <MESSAGE value="Basic refactoring" />
     <MESSAGE value="implemented update_q_value for QLearningAgent.py" />
     <MESSAGE value="implemented exploration_decay for QLearningAgent.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented exploration_decay for QLearningAgent.py" />
+    <MESSAGE value="Implemented specifications and method stubs to tournament.py" />
+    <MESSAGE value="Implemented specifications and method stubs to MatchSimulator.py" />
+    <MESSAGE value="Implemented specifications and method stubs to ResultManager.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented specifications and method stubs to ResultManager.py" />
   </component>
 </project>
