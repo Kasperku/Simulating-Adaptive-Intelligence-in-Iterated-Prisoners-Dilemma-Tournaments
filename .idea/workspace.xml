@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="Implemented specifications and method stubs to ResultManager.py">
-      <change afterPath="$PROJECT_DIR$/Test/TestTournament/TestTournament.py" afterDir="false" />
+    <list default="true" id="caae65cf-4859-44fe-920e-396fbd7fccc0" name="Changes" comment="wrote test for tournament.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/TestTournament/TestTournament.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestTournament/TestTournament.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/tournament/tournament.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/tournament/tournament.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -343,7 +344,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735096368315</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="wrote test for tournament.py">
+      <option name="closed" value="true" />
+      <created>1735099282142</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1735099282142</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -375,6 +384,7 @@
     <MESSAGE value="Implemented specifications and method stubs to tournament.py" />
     <MESSAGE value="Implemented specifications and method stubs to MatchSimulator.py" />
     <MESSAGE value="Implemented specifications and method stubs to ResultManager.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented specifications and method stubs to ResultManager.py" />
+    <MESSAGE value="wrote test for tournament.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="wrote test for tournament.py" />
   </component>
 </project>
