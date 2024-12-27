@@ -1,6 +1,6 @@
-from typing import Dict, List
+from typing import Dict, List, Optional
 from model.bots.BaseBot import BaseBot
-from model.constants import PAYOFF_MATRIX
+from model.constants import PAYOFF_MATRIX, COOPERATE
 
 
 class MatchSimulator:
@@ -16,7 +16,7 @@ class MatchSimulator:
             payoff_matrix (Dict[tuple, tuple]): A custom payoff matrix. Defaults to the standard Prisoner's Dilemma payoffs.
         """
         self.payoff_matrix = payoff_matrix
-        self.last_match_results = None
+        self.last_match_results: Optional[Dict[str, object]] = None
 
     def simulate_match(self, bot1: BaseBot, bot2: BaseBot, round_num: int) -> Dict:
         """
@@ -39,16 +39,16 @@ class MatchSimulator:
             raise ValueError("Number of rounds must be positive")
 
         # Initialize match data
-        bot1_actions = []
-        bot2_actions = []
+        bot1_actions: List[str] = []
+        bot2_actions: List[str] = []
         bot1_total_payoff = 0
         bot2_total_payoff = 0
 
         # Play rounds
         for _ in range(round_num):
             # Get bot decisions based on game history
-            action1 = bot1.make_decision(bot2_actions)
-            action2 = bot2.make_decision(bot1_actions)
+            action1 = bot1.choose_action(bot2_actions[-1] if bot2_actions else COOPERATE)
+            action2 = bot2.choose_action(bot1_actions[-1] if bot1_actions else COOPERATE)
             
             # Record actions
             bot1_actions.append(action1)

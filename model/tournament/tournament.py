@@ -1,6 +1,7 @@
 from typing import List, Dict
 from model.bots.BaseBot import BaseBot
-from model.tournament import MatchSimulator, ResultManager
+from model.tournament.MatchSimulator import MatchSimulator
+from model.tournament.ResultManager import ResultManager
 
 
 class Tournament:
@@ -88,7 +89,7 @@ class Tournament:
             match_results (List[Dict]): A list of match results to record.
         """
         for result in match_results:
-            self.result_manager.record_match_results(result)
+            self.result_manager.record_result(result)
 
     def get_results(self) -> List[Dict]:
         """
