@@ -1,7 +1,9 @@
 import unittest
 from unittest.mock import MagicMock
 from model.bots.BaseBot import BaseBot
-from model.tournament import MatchSimulator, ResultManager, tournament
+from model.tournament.MatchSimulator import MatchSimulator
+from model.tournament.ResultManager import ResultManager
+from model.tournament.tournament import Tournament
 from model.constants import *
 
 
@@ -14,7 +16,7 @@ class TestTournament(unittest.TestCase):
         self.rounds = 5
         self.match_simulator = MagicMock(spec=MatchSimulator)
         self.result_manager = MagicMock(spec=ResultManager)
-        self.tournament = tournament(
+        self.tournament = Tournament(
             participants=self.participants,
             rounds=self.rounds,
             match_simulator=self.match_simulator,
@@ -47,18 +49,18 @@ class TestTournament(unittest.TestCase):
         self.match_simulator.simulate_match.return_value = match_result
 
         # Call play_round
-        self.tournament.play_round(round_number)
+        results = self.tournament.play_round(round_number)
 
-        # Ensure each bot plays against every other bot
-        self.assertEqual(self.match_simulator.simulate_match.call_count,
-                         len(self.participants) * (len(self.participants) - 1) // 2)
+        # Verify the number of matches played
+        expected_matches = (len(self.participants) * (len(self.participants) - 1) // 2) * Tournament.MATCHES_PER_PAIR
+        self.assertEqual(self.match_simulator.simulate_match.call_count, expected_matches)
 
-        # Verify `simulate_match` calls
-        self.match_simulator.simulate_match.assert_any_call(self.participants[0], self.participants[1],
-                                                            tournament.MATCHES_PER_PAIR)
+        # Verify `simulate_match` calls with correct arguments
+        self.match_simulator.simulate_match.assert_any_call(self.participants[0], self.participants[1], round_number)
 
-        # Verify results are recorded in the ResultManager
-        self.result_manager.record_result.assert_called_with(match_result)
+        # Verify the returned results
+        self.assertEqual(len(results), expected_matches)
+        self.assertIn(match_result, results)
 
     def test_run_tournament(self):
         """
@@ -104,7 +106,7 @@ class TestTournament(unittest.TestCase):
         empty_participants = []
 
         # Create a tournament with no participants
-        self.tournament = tournament(
+        self.tournament = Tournament(
             participants=empty_participants,
             rounds=5,
             match_simulator=self.match_simulator,
@@ -112,21 +114,21 @@ class TestTournament(unittest.TestCase):
         )
 
         # Call `run_tournament`
-        tournament.run_tournament()
+        self.tournament.run_tournament()
 
         # Verify `simulate_match` is never called since there are no participants
         self.match_simulator.simulate_match.assert_not_called()
 
         # Verify `get_results` returns an empty list
         self.result_manager.get_all_results.return_value = []
-        self.assertEqual(tournament.get_results(), [])
+        self.assertEqual(self.tournament.get_results(), [])
 
     def test_no_rounds(self):
         """
         Tests the `Tournament` class behavior when `rounds = 0`.
         """
         # Create a tournament with valid participants but no rounds
-        self.tournament = tournament(
+        self.tournament = Tournament(
             participants=self.participants,
             rounds=0,
             match_simulator=self.match_simulator,
@@ -152,7 +154,7 @@ class TestTournament(unittest.TestCase):
         Tests the full flow of a tournament with multiple participants and rounds.
         """
         # Create a tournament with valid participants and rounds
-        self.tournament = tournament(
+        self.tournament = Tournament(
             participants=self.participants,
             rounds=3,
             match_simulator=self.match_simulator,
