@@ -1,7 +1,7 @@
 import unittest
 from model.tournament import MatchSimulator
 from model.bots.BaseBot import BaseBot
-from model.constants import COOPERATE, DEFECT, PAYOFF_MATRIX
+from model.constants import *
 
 
 class MockBot(BaseBot):
