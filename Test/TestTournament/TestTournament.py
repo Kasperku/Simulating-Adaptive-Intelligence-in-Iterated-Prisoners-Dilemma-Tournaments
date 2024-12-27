@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 from model.bots.BaseBot import BaseBot
 from model.tournament import MatchSimulator, ResultManager, tournament
+from model.constants import *
 
 
 class TestTournament(unittest.TestCase):
@@ -38,8 +39,8 @@ class TestTournament(unittest.TestCase):
         # Mock match results
         match_result = {
             "round_number": round_number,
-            "TFTBot_actions": ["Cooperate", "Defect"],
-            "GrimBot_actions": ["Cooperate", "Defect"],
+            "TFTBot_actions": [COOPERATE, DEFECT],
+            "GrimBot_actions": [COOPERATE, DEFECT],
             "TFTBot_total_payoff": 6,
             "GrimBot_total_payoff": 7
         }
@@ -161,8 +162,8 @@ class TestTournament(unittest.TestCase):
         # Mock match results
         mock_match_result = {
             "round_number": 1,
-            "GrimBot_actions": ["Cooperate", "Defect"],
-            "TFTBot_actions": ["Cooperate", "Cooperate"],
+            "GrimBot_actions": [COOPERATE, DEFECT],
+            "TFTBot_actions": [COOPERATE, DEFECT],
             "GrimBot_total_payoff": 8,
             "TFTBot_total_payoff": 6
         }
