@@ -120,10 +120,12 @@ class QLearningAgent:
         cooperate_payoff = table.get_q_value(state, COOPERATE)
         best_actions = []
 
-        if defect_payoff <= cooperate_payoff:
-            best_actions.append(COOPERATE)
-        if defect_payoff >= cooperate_payoff:
+        if defect_payoff > cooperate_payoff:
             best_actions.append(DEFECT)
+        elif defect_payoff < cooperate_payoff:
+            best_actions.append(COOPERATE)
+        else:  # equal payoffs
+            best_actions.extend([DEFECT, COOPERATE])
 
         return best_actions
 

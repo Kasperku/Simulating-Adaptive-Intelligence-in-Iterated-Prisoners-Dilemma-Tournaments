@@ -4,9 +4,9 @@ DEFECT = "Defect"
 
 # bellman's equation
 LEARNING_RATE = 0.1
-DEFAULT_EXPLORATION_RATE = 1
-DISCOUNT_FACTOR = 0.9
-DECAY_RATE = 0.99
+DEFAULT_EXPLORATION_RATE = 1.0
+DISCOUNT_FACTOR = 0.95
+DECAY_RATE = 0.95
 
 # Payoff matrix for the Prisoner's Dilemma
 PAYOFF_MATRIX = {
@@ -25,4 +25,4 @@ MATCHES_PLAYED = "matches_played"
 COOPERATE_COUNT = "cooperate_count"
 DEFECT_COUNT = "defect_count"
 COOPERATION_RATE = "cooperation_rate"
-TURNS_PER_ROUND = 10
+TURNS_PER_ROUND = 100

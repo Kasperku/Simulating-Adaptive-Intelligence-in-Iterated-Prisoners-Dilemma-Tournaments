@@ -13,7 +13,7 @@ class MatchSimulator:
         Initializes the match simulator with a custom or default payoff matrix.
 
         Args:
-            payoff_matrix (Dict[tuple, tuple]): A custom payoff matrix. Defaults to the standard Prisoner's Dilemma payoffs.
+            turns_per_round (int): Number of turns per match. Defaults to TURNS_PER_ROUND.
         """
         self.turns_per_match = turns_per_round
         self.payoff_matrix = PAYOFF_MATRIX
