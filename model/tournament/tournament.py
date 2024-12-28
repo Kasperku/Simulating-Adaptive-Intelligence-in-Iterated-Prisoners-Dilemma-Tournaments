@@ -6,7 +6,7 @@ from model.tournament.ResultManager import ResultManager
 
 class Tournament:
     # Static field
-    MATCHES_PER_PAIR: int = 10
+    MATCHES_PER_PAIR: int = 1
 
     def __init__(self, participants: List[BaseBot], rounds: int, match_simulator: MatchSimulator,
                  result_manager: ResultManager):

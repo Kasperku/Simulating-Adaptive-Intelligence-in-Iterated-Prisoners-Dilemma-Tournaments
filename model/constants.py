@@ -10,8 +10,19 @@ DECAY_RATE = 0.99
 
 # Payoff matrix for the Prisoner's Dilemma
 PAYOFF_MATRIX = {
-    ("Cooperate", "Cooperate"): (3, 3),
-    ("Cooperate", "Defect"): (0, 5),
-    ("Defect", "Cooperate"): (5, 0),
-    ("Defect", "Defect"): (1, 1),
+    (COOPERATE, COOPERATE): (3, 3),
+    (COOPERATE, DEFECT): (0, 5),
+    (DEFECT, COOPERATE): (5, 0),
+    (DEFECT, DEFECT): (1, 1),
 }
+
+# tournament constants
+ROUND_NUM = "round_number"
+ACTIONS_SUFFIX = "_actions"
+PAYOFF_SUFFIX = "_total_payoff"
+TOTAL_PAYOFF = "total_payoff"  
+MATCHES_PLAYED = "matches_played"
+COOPERATE_COUNT = "cooperate_count"
+DEFECT_COUNT = "defect_count"
+COOPERATION_RATE = "cooperation_rate"
+TURNS_PER_ROUND = 10

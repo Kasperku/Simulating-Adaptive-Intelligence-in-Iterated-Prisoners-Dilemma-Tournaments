@@ -1,5 +1,5 @@
 from typing import List, Dict
-from model.constants import COOPERATE, DEFECT
+from model.constants import *
 
 
 class ResultManager:
@@ -21,23 +21,23 @@ class ResultManager:
 
         Args:
             result (Dict): A dictionary representing the match result.
-                Must contain 'rounds_played' and for each bot: '_actions' and '_total_payoff'
+                Must contain round_number and for each bot: ACTIONS and PAYOFF_SUFFIX
 
         Raises:
             KeyError: If the result format is invalid
         """
         # Validate required fields
-        if 'rounds_played' not in result:
-            raise KeyError("Result must contain 'rounds_played'")
+        if ROUND_NUM not in result:
+            raise KeyError("Result must contain round_number")
 
         # Find bot names by looking for '_actions' suffix
-        bot_names = {key.split('_')[0] for key in result.keys() if key.endswith('_actions')}
+        bot_names = {key.split('_')[0] for key in result.keys() if key.endswith(ACTIONS_SUFFIX)}
         
         # Validate that each bot has both actions and total_payoff
         for bot_name in bot_names:
-            if f"{bot_name}_total_payoff" not in result:
+            if f"{bot_name}{PAYOFF_SUFFIX}" not in result:
                 raise KeyError(f"Missing total_payoff for bot {bot_name}")
-            if f"{bot_name}_actions" not in result:
+            if f"{bot_name}{ACTIONS_SUFFIX}" not in result:
                 raise KeyError(f"Missing actions for bot {bot_name}")
 
         # If we get here, the format is valid
@@ -58,22 +58,22 @@ class ResultManager:
 
         Returns:
             Dict: A dictionary where each key is a bot's name and the value is a dictionary
-                  with aggregate statistics (total payoff, matches played, cooperate count, defect count).
+                  with aggregate statistics (PAYOFF, MATCHES_PLAYED, COOPERATE_COUNT, DEFECT_COUNT).
         """
         aggregate_stats = {}
 
         for result in self.results:
             # Extract bot names from the result
             bot_names = {key.split('_')[0] for key in result.keys() 
-                        if key.endswith('_actions') or key.endswith('_total_payoff')}
+                        if key.endswith(ACTIONS_SUFFIX) or key.endswith(TOTAL_PAYOFF)}
 
             for bot_name in bot_names:
                 if bot_name not in aggregate_stats:
                     aggregate_stats[bot_name] = {
-                        "total_payoff": 0,
-                        "matches_played": 0,
-                        "cooperate_count": 0,
-                        "defect_count": 0
+                        TOTAL_PAYOFF: 0,
+                        MATCHES_PLAYED: 0,
+                        COOPERATE_COUNT: 0,
+                        DEFECT_COUNT: 0
                     }
 
                 self._update_payoff_and_matches(aggregate_stats, bot_name, result)
@@ -83,14 +83,14 @@ class ResultManager:
 
     def _update_payoff_and_matches(self, aggregate_stats: Dict, bot_name: str, result: Dict):
         """Helper method to update payoff and match count statistics"""
-        aggregate_stats[bot_name]["total_payoff"] = aggregate_stats[bot_name]["total_payoff"] + result[f"{bot_name}_total_payoff"]
-        aggregate_stats[bot_name]["matches_played"] += 1
+        aggregate_stats[bot_name][TOTAL_PAYOFF] = aggregate_stats[bot_name][TOTAL_PAYOFF] + result[f"{bot_name}{PAYOFF_SUFFIX}"]
+        aggregate_stats[bot_name][MATCHES_PLAYED] += 1
 
     def _count_actions(self, aggregate_stats: Dict, bot_name: str, result: Dict):
         """Helper method to count cooperate and defect actions"""
-        actions = result[f"{bot_name}_actions"]
-        aggregate_stats[bot_name]["cooperate_count"] += actions.count(COOPERATE)
-        aggregate_stats[bot_name]["defect_count"] += actions.count(DEFECT)
+        actions = result[f"{bot_name}{ACTIONS_SUFFIX}"]
+        aggregate_stats[bot_name][COOPERATE_COUNT] += actions.count(COOPERATE)
+        aggregate_stats[bot_name][DEFECT_COUNT] += actions.count(DEFECT)
 
         return aggregate_stats
 
@@ -109,11 +109,11 @@ class ResultManager:
         """
         # Initialize statistics
         stats = {
-            "total_payoff": 0,
-            "matches_played": 0,
-            "cooperate_count": 0,
-            "defect_count": 0,
-            "cooperation_rate": 0.0
+            TOTAL_PAYOFF: 0,
+            MATCHES_PLAYED: 0,
+            COOPERATE_COUNT: 0,
+            DEFECT_COUNT: 0,
+            COOPERATION_RATE: 0.0
         }
 
         bot_found = False
@@ -122,20 +122,20 @@ class ResultManager:
         for result in self.results:
             if f"{bot_name}_actions" in result:
                 bot_found = True
-                stats["total_payoff"] += result[f"{bot_name}_total_payoff"]
-                stats["matches_played"] += 1
+                stats[TOTAL_PAYOFF] += result[f"{bot_name}{PAYOFF_SUFFIX}"]
+                stats[MATCHES_PLAYED] += 1
 
-                actions = result[f"{bot_name}_actions"]
-                stats["cooperate_count"] += actions.count(COOPERATE)
-                stats["defect_count"] += actions.count(DEFECT)
+                actions = result[f"{bot_name}{ACTIONS_SUFFIX}"]
+                stats[COOPERATE_COUNT] += actions.count(COOPERATE)
+                stats[DEFECT_COUNT] += actions.count(DEFECT)
 
         if not bot_found:
             raise KeyError(f"No statistics found for bot: {bot_name}")
 
         # Calculate cooperation rate
-        total_actions = stats["cooperate_count"] + stats["defect_count"]
+        total_actions = stats[COOPERATE_COUNT] + stats[DEFECT_COUNT]
         if total_actions > 0:
-            stats["cooperation_rate"] = float(stats["cooperate_count"] / total_actions)
+            stats[COOPERATION_RATE] = float(stats[COOPERATE_COUNT] / total_actions)
 
         return stats
 

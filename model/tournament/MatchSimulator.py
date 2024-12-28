@@ -1,6 +1,6 @@
 from typing import Dict, List, Optional
 from model.bots.BaseBot import BaseBot
-from model.constants import PAYOFF_MATRIX, COOPERATE
+from model.constants import *
 
 
 class MatchSimulator:
@@ -8,14 +8,15 @@ class MatchSimulator:
     Simulates matches between two bots in a Prisoner's Dilemma tournament.
     """
 
-    def __init__(self, payoff_matrix: Dict[tuple, tuple] = PAYOFF_MATRIX):
+    def __init__(self, turns_per_round: int = TURNS_PER_ROUND):
         """
         Initializes the match simulator with a custom or default payoff matrix.
 
         Args:
             payoff_matrix (Dict[tuple, tuple]): A custom payoff matrix. Defaults to the standard Prisoner's Dilemma payoffs.
         """
-        self.payoff_matrix = payoff_matrix
+        self.turns_per_match = turns_per_round
+        self.payoff_matrix = PAYOFF_MATRIX
         self.last_match_results: Optional[Dict[str, object]] = None
 
     def simulate_match(self, bot1: BaseBot, bot2: BaseBot, round_num: int) -> Dict:
@@ -44,31 +45,29 @@ class MatchSimulator:
         bot1_total_payoff = 0
         bot2_total_payoff = 0
 
-        # Play rounds
-        for _ in range(round_num):
-            # Get bot decisions based on game history
+        # Play turns_per_match number of turns (not round_num)
+        for _ in range(self.turns_per_match):
             action1 = bot1.choose_action(bot2_actions[-1] if bot2_actions else COOPERATE)
             action2 = bot2.choose_action(bot1_actions[-1] if bot1_actions else COOPERATE)
             
-            # Record actions
+            # Convert None or string actions to COOPERATE/DEFECT constants
+            action1 = COOPERATE if action1 in [None, COOPERATE] else DEFECT
+            action2 = COOPERATE if action2 in [None, COOPERATE] else DEFECT
+            
             bot1_actions.append(action1)
             bot2_actions.append(action2)
             
-            # Calculate and accumulate payoffs
             payoffs = self.payoff_matrix[(action1, action2)]
             bot1_total_payoff += payoffs[0]
             bot2_total_payoff += payoffs[1]
 
-        # Create and store match results
-        self.last_match_results = {
-            "rounds_played": round_num,
-            f"{bot1.name}_actions": bot1_actions,
-            f"{bot2.name}_actions": bot2_actions,
-            f"{bot1.name}_total_payoff": bot1_total_payoff,
-            f"{bot2.name}_total_payoff": bot2_total_payoff
+        return {
+            ROUND_NUM: round_num,
+            f"{bot1.name}{ACTIONS_SUFFIX}": bot1_actions,
+            f"{bot2.name}{ACTIONS_SUFFIX}": bot2_actions,
+            f"{bot1.name}{PAYOFF_SUFFIX}": bot1_total_payoff,
+            f"{bot2.name}{PAYOFF_SUFFIX}": bot2_total_payoff
         }
-        
-        return self.last_match_results
 
     def get_match_results(self) -> Dict:
         """
