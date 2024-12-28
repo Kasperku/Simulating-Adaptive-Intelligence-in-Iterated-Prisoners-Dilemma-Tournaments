@@ -29,7 +29,7 @@ class TestMatchSimulator(unittest.TestCase):
         result = self.match_simulator.simulate_match(bot1, bot2, round_number)
 
         # Updated assertions to match implementation
-        self.assertIn("rounds_played", result)
+        self.assertIn("round_number", result)
         self.assertIn(f"{bot1.name}_actions", result)
         self.assertIn(f"{bot2.name}_actions", result)
         self.assertIn(f"{bot1.name}_total_payoff", result)
@@ -38,19 +38,19 @@ class TestMatchSimulator(unittest.TestCase):
     def test_simulate_match_payoffs(self):
         bot1 = MockBot(name="CooperateBot", action=COOPERATE)
         bot2 = MockBot(name="DefectBot", action=DEFECT)
-        round_number = 1
+        round_number = TURNS_PER_ROUND
 
         result = self.match_simulator.simulate_match(bot1, bot2, round_number)
 
         # Verify payoffs from PAYOFF_MATRIX
         expected_payoff_bot1, expected_payoff_bot2 = PAYOFF_MATRIX[(COOPERATE, DEFECT)]
-        self.assertEqual(result[f"{bot1.name}_total_payoff"], expected_payoff_bot1)
-        self.assertEqual(result[f"{bot2.name}_total_payoff"], expected_payoff_bot2)
+        self.assertEqual(result[f"{bot1.name}_total_payoff"], expected_payoff_bot1 * round_number)
+        self.assertEqual(result[f"{bot2.name}_total_payoff"], expected_payoff_bot2 * round_number)
 
     def test_simulate_match_actions(self):
         bot1 = MockBot(name="CooperateBot", action=COOPERATE)
         bot2 = MockBot(name="DefectBot", action=DEFECT)
-        round_number = 1
+        round_number = TURNS_PER_ROUND
 
         result = self.match_simulator.simulate_match(bot1, bot2, round_number)
 
@@ -66,7 +66,7 @@ class TestMatchSimulator(unittest.TestCase):
         result = self.match_simulator.simulate_match(bot1, bot2, round_number)
 
         # Verify round number is correct
-        self.assertEqual(result["rounds_played"], round_number)
+        self.assertEqual(result["round_number"], round_number)
 
     def test_invalid_round_number(self):
         """Test that negative or zero rounds raise ValueError"""
@@ -88,7 +88,7 @@ class TestMatchSimulator(unittest.TestCase):
         """Test that payoffs accumulate correctly over multiple rounds"""
         bot1 = MockBot(name="CooperateBot", action=COOPERATE)
         bot2 = MockBot(name="DefectBot", action=DEFECT)
-        round_number = 3
+        round_number = TURNS_PER_ROUND
         
         result = self.match_simulator.simulate_match(bot1, bot2, round_number)
         
@@ -103,7 +103,7 @@ class TestMatchSimulator(unittest.TestCase):
         """Test that action history length matches round number"""
         bot1 = MockBot(name="CooperateBot", action=COOPERATE)
         bot2 = MockBot(name="DefectBot", action=DEFECT)
-        round_number = 5
+        round_number = TURNS_PER_ROUND
         
         result = self.match_simulator.simulate_match(bot1, bot2, round_number)
         

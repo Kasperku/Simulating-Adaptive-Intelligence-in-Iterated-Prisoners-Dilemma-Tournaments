@@ -174,12 +174,13 @@ class TestTournament(unittest.TestCase):
         # Run the tournament
         self.tournament.run_tournament()
 
-        # Verify `play_round` was called for each round
-        self.tournament.play_round = MagicMock()
-        self.assertEqual(self.tournament.play_round.call_count, 3)
+        # Verify simulate_match was called the expected number of times
+        expected_matches_per_round = (len(self.participants) * (len(self.participants) - 1) // 2) * Tournament.MATCHES_PER_PAIR
+        expected_total_matches = expected_matches_per_round * 3  # 3 rounds
+        self.assertEqual(self.match_simulator.simulate_match.call_count, expected_total_matches)
 
         # Verify results were added to the ResultManager
-        self.result_manager.record_match_results.assert_called()
+        self.result_manager.record_result.assert_called()
         self.result_manager.get_all_results.return_value = [mock_match_result]
 
         # Verify the `get_results` method retrieves the correct results

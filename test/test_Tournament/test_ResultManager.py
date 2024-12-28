@@ -1,17 +1,17 @@
 import unittest
 from model.tournament.ResultManager import ResultManager
-from model.constants import COOPERATE, DEFECT
+from model.constants import *
 
 
 class TestResultManager(unittest.TestCase):
     def setUp(self):
         self.result_manager = ResultManager()
         self.sample_result = {
-            "rounds_played": 3,
-            "TFTBot_actions": [COOPERATE, COOPERATE, DEFECT],
-            "GrimBot_actions": [COOPERATE, DEFECT, DEFECT],
-            "TFTBot_total_payoff": 10,
-            "GrimBot_total_payoff": 12
+            ROUND_NUM: 3,
+            f"TFTBot{ACTIONS_SUFFIX}": [COOPERATE, COOPERATE, DEFECT],
+            f"GrimBot{ACTIONS_SUFFIX}": [COOPERATE, DEFECT, DEFECT],
+            f"TFTBot{PAYOFF_SUFFIX}": 10,
+            f"GrimBot{PAYOFF_SUFFIX}": 12
         }
 
     def test_record_and_get_results(self):
@@ -27,11 +27,11 @@ class TestResultManager(unittest.TestCase):
         # Record multiple results
         self.result_manager.record_result(self.sample_result)
         second_result = {
-            "rounds_played": 3,
-            "TFTBot_actions": [COOPERATE, DEFECT, DEFECT],
-            "RandomBot_actions": [DEFECT, DEFECT, COOPERATE],
-            "TFTBot_total_payoff": 8,
-            "RandomBot_total_payoff": 11
+            ROUND_NUM: 3,
+            f"TFTBot{ACTIONS_SUFFIX}": [COOPERATE, DEFECT, DEFECT],
+            f"RandomBot{ACTIONS_SUFFIX}": [DEFECT, DEFECT, COOPERATE],
+            f"TFTBot{PAYOFF_SUFFIX}": 8,
+            f"RandomBot{PAYOFF_SUFFIX}": 11
         }
         self.result_manager.record_result(second_result)
 
@@ -40,14 +40,14 @@ class TestResultManager(unittest.TestCase):
         # Check TFTBot's aggregate statistics
         self.assertIn("TFTBot", aggregate_results)
         tft_stats = aggregate_results["TFTBot"]
-        self.assertEqual(tft_stats["total_payoff"], 18)  # 10 + 8
-        self.assertEqual(tft_stats["matches_played"], 2)
+        self.assertEqual(tft_stats[TOTAL_PAYOFF], 18)  # 10 + 8
+        self.assertEqual(tft_stats[MATCHES_PLAYED], 2)
         
         # Check other bots' statistics
         self.assertIn("GrimBot", aggregate_results)
         self.assertIn("RandomBot", aggregate_results)
-        self.assertEqual(aggregate_results["GrimBot"]["matches_played"], 1)
-        self.assertEqual(aggregate_results["RandomBot"]["matches_played"], 1)
+        self.assertEqual(aggregate_results["GrimBot"][MATCHES_PLAYED], 1)
+        self.assertEqual(aggregate_results["RandomBot"][MATCHES_PLAYED], 1)
 
     def test_get_bot_statistics(self):
         """Test retrieving statistics for a specific bot"""
