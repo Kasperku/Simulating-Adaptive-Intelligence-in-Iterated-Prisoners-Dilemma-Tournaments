@@ -8,10 +8,12 @@ from model.tournament.tournament import Tournament
 from model.tournament.MatchSimulator import MatchSimulator
 from model.tournament.ResultManager import ResultManager
 from model.constants import *
+from ui.csv_export import export_tournament_stats
 
 def main():
     NUM_TOURNAMENTS = 100
     aggregate_stats = {}
+    tournament_stats = []  # List to store stats for each tournament
 
     for tournament_num in range(NUM_TOURNAMENTS):
         print(f"\nTournament {tournament_num + 1}/{NUM_TOURNAMENTS}")
@@ -49,9 +51,12 @@ def main():
         # Run the tournament
         tournament.run_tournament()
 
-        # Accumulate statistics
-        results = result_manager.get_aggregate_results()
-        for bot_name, stats in results.items():
+        # Store this tournament's results
+        tournament_results = result_manager.get_aggregate_results()
+        tournament_stats.append(tournament_results)
+        
+        # Accumulate statistics for overall average
+        for bot_name, stats in tournament_results.items():
             if bot_name not in aggregate_stats:
                 aggregate_stats[bot_name] = {
                     TOTAL_PAYOFF: 0,
@@ -62,19 +67,9 @@ def main():
             for key in [TOTAL_PAYOFF, MATCHES_PLAYED, COOPERATE_COUNT, DEFECT_COUNT]:
                 aggregate_stats[bot_name][key] += stats[key]
 
-    # Print averaged statistics
-    print("\nAveraged Statistics over", NUM_TOURNAMENTS, "tournaments:")
-    print("=" * 50)
-    for bot_name, stats in aggregate_stats.items():
-        avg_payoff = stats[TOTAL_PAYOFF] / NUM_TOURNAMENTS
-        avg_matches = stats[MATCHES_PLAYED] / NUM_TOURNAMENTS
-        total_actions = stats[COOPERATE_COUNT] + stats[DEFECT_COUNT]
-        avg_coop_rate = stats[COOPERATE_COUNT] / total_actions if total_actions > 0 else 0
-        
-        print(f"\n{bot_name}:")
-        print(f"Average Payoff per Tournament: {avg_payoff:.2f}")
-        print(f"Average Matches per Tournament: {avg_matches:.2f}")
-        print(f"Overall Cooperation Rate: {avg_coop_rate:.2%}")
+    # Export statistics to CSV
+    export_tournament_stats(aggregate_stats, tournament_stats, NUM_TOURNAMENTS)
+    print("\nStatistics have been exported to tournament_stats.csv")
 
 if __name__ == "__main__":
     main()
