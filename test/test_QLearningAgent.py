@@ -125,22 +125,60 @@ class TestQLearningAgent(unittest.TestCase):
         opponent_name = "TFTBot"
         self.agent.initialize_q_table_for_opponent(opponent_name)
 
-        # Mock Q table: Set initial Q-values
+        # Step 1: First update
         table = self.agent.get_qtables()[opponent_name]
-        table.update_q_value(state=COOPERATE, action=DEFECT, learning_rate=LEARNING_RATE,
-                             immediate_reward=5, discount_factor=DISCOUNT_FACTOR, next_state=DEFECT)
+        table.update_q_value(
+            state=COOPERATE, 
+            action=DEFECT, 
+            learning_rate=LEARNING_RATE,  # 0.1
+            immediate_reward=5, 
+            discount_factor=DISCOUNT_FACTOR,  # 0.9
+            next_state=DEFECT
+        )
 
-        # Verify Q-value after mock update
+        # Step 2: Verify first update result
         curr_q = table.get_q_value(state=COOPERATE, action=DEFECT)
         self.assertAlmostEqual(curr_q, 0.5, 5)
 
-        # Perform the Q-value update via the agent
-        self.agent.update_q_value(opponent_name, state=COOPERATE, action=DEFECT,
-                                  reward=10, next_state=COOPERATE)
+        # Step 3: Second update - let's break it down
+        current_q = curr_q  # Should be 0.5
+        reward = 10
+        next_state_max_q = max(table.get_table()[COOPERATE].values())  # Should be 0
+        
+        # Calculate expected value step by step
+        future_value = DISCOUNT_FACTOR * next_state_max_q  # 0.9 * 0
+        temporal_diff = reward + future_value - current_q  # 10 + 0 - 0.5
+        update = LEARNING_RATE * temporal_diff  # 0.1 * 9.5
+        expected = current_q + update  # 0.5 + 0.95
 
-        # Verify Q-value after agent update
-        updated_value = self.agent.get_q_value(opponent_name, state=COOPERATE, action=DEFECT)
-        self.assertAlmostEqual(updated_value, (0.5 + 0.1 * (10 + 0.9 * 0.5 - 0.5)), 5)
+        # Step 4: Perform actual update
+        self.agent.update_q_value(
+            opponent_name, 
+            state=COOPERATE, 
+            action=DEFECT,
+            reward=10, 
+            next_state=COOPERATE
+        )
+
+        # Step 5: Compare results
+        actual = self.agent.get_q_value(opponent_name, state=COOPERATE, action=DEFECT)
+        
+        # Raise an error with detailed information
+        if abs(actual - expected) > 0.00001:
+            raise AssertionError(
+                f"\nCalculation breakdown:"
+                f"\n  Current Q: {current_q}"
+                f"\n  Reward: {reward}"
+                f"\n  Next state max Q: {next_state_max_q}"
+                f"\n  Future value (γ * max Q'): {future_value}"
+                f"\n  Temporal difference: {temporal_diff}"
+                f"\n  Update amount (α * TD): {update}"
+                f"\n  Expected final value: {expected}"
+                f"\n  Actual final value: {actual}"
+                f"\n  Difference: {actual - expected}"
+            )
+
+        self.assertAlmostEqual(actual, expected, 5)
 
     def test_exploration_rate_init(self):
         # exploration rate initialized to 1.0
