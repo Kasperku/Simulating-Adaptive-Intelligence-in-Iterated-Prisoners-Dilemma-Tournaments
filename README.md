@@ -18,7 +18,8 @@ This project simulates repeated interactions between bots playing the Prisoner's
 
 
 ## How to use
-
-- **Run the Tournament:** Initialize the tournament with desired bots, number of rounds, and matches per pair.
-- **Analyze Results:** Retrieve detailed match results or aggregated statistics to understand strategy performance.
-- **Experiment:** Add or remove bots, change strategies, or modify the payoff matrix to explore dynamics.
+1. **Clone the repository**
+2. **Cd into the root directory**
+3. **Run the Tournament:** Initialize the tournament with desired bots, number of rounds, and matches per pair in constants.py
+4. **Analyze Results:** Retrieve detailed match results or aggregated statistics to understand strategy performance.
+5. **Experiment:** Add or remove bots, change strategies, or modify the payoff matrix to explore dynamics.
