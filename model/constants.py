@@ -6,7 +6,7 @@ DEFECT = "Defect"
 LEARNING_RATE = 0.1
 DEFAULT_EXPLORATION_RATE = 1.0
 DISCOUNT_FACTOR = 0.95
-DECAY_RATE = 0.95
+DECAY_RATE = 0.99
 
 # Payoff matrix for the Prisoner's Dilemma
 PAYOFF_MATRIX = {
