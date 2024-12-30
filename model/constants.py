@@ -25,4 +25,5 @@ MATCHES_PLAYED = "matches_played"
 COOPERATE_COUNT = "cooperate_count"
 DEFECT_COUNT = "defect_count"
 COOPERATION_RATE = "cooperation_rate"
-TURNS_PER_ROUND = 100
+TURNS_PER_ROUND = 500
+ROUNDS = 100

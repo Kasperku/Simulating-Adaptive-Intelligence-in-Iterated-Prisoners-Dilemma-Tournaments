@@ -43,7 +43,7 @@ def main():
         # Create and run tournament
         tournament = Tournament(
             participants=bots,
-            rounds=10,
+            rounds=ROUNDS,
             match_simulator=match_simulator,
             result_manager=result_manager
         )
