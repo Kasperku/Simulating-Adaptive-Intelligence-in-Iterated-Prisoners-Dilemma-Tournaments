@@ -39,6 +39,10 @@ class MatchSimulator:
         if round_num <= 0:
             raise ValueError("Number of rounds must be positive")
 
+        # Reset bots before match
+        bot1.reset()
+        bot2.reset()
+
         # Initialize match data
         bot1_actions: List[str] = []
         bot2_actions: List[str] = []
