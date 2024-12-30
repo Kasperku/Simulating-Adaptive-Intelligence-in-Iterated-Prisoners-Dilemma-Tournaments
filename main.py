@@ -11,12 +11,12 @@ from model.constants import *
 from ui.csv_export import export_tournament_stats
 
 def main():
-    NUM_TOURNAMENTS = 100
+    num_tournaments = NUM_TOURNAMENTS
     aggregate_stats = {}
     tournament_stats = []  # List to store stats for each tournament
 
-    for tournament_num in range(NUM_TOURNAMENTS):
-        print(f"\nTournament {tournament_num + 1}/{NUM_TOURNAMENTS}")
+    for tournament_num in range(num_tournaments):
+        print(f"\nTournament {tournament_num + 1}/{num_tournaments}")
         
         # Create two QLearningBots with different names
         qbot1 = QLearningBot()
@@ -68,7 +68,7 @@ def main():
                 aggregate_stats[bot_name][key] += stats[key]
 
     # Export statistics to CSV
-    export_tournament_stats(aggregate_stats, tournament_stats, NUM_TOURNAMENTS)
+    export_tournament_stats(aggregate_stats, tournament_stats, num_tournaments)
     print("\nStatistics have been exported to tournament_stats.csv")
 
 if __name__ == "__main__":
