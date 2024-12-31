@@ -24,15 +24,18 @@ class QTable:
             state: {action: 0.0 for action in actions} for state in states
         }
     
+    # Getters
     def get_table(self) -> dict: 
         return self.table
         
-
     def get_q_value(self, state: str, action: str) -> float:
-        """
-        Retrieves the Q-value for a specific state-action pair.
-        """
         return self.table[state][action]
+
+    # Setters
+    def set_q_value(self, state: str, action: str, value: float):
+        self.table[state][action] = value
+
+
 
     def update_q_value(self, state: str, action: str,
                        learning_rate: float, immediate_reward: float,
@@ -62,5 +65,5 @@ class QTable:
         )
 
         # Update the QTable
-        self.get_table()[state][action] = new_q_value
+        self.set_q_value(state, action, new_q_value)
 
