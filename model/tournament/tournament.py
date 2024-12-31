@@ -49,7 +49,6 @@ class Tournament:
         for round_number in range(1, self.get_rounds() + 1):
             match_results = self.play_round(round_number)
             self.record_results(match_results)
-            self.reset_bots()
 
     def play_round(self, round_number: int) -> List[Dict]:
         """
@@ -76,6 +75,7 @@ class Tournament:
                 for _ in range(Tournament.MATCHES_PER_PAIR):
                     match_result = self.match_simulator.simulate_match(bot1, bot2, round_number)
                     round_results.append(match_result)
+                    self.reset_bots()
 
         return round_results
 
