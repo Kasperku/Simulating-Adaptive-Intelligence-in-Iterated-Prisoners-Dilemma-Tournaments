@@ -40,10 +40,7 @@ class MatchSimulator:
             raise ValueError("Number of rounds must be positive")
 
         # Set opponent names if bots support it
-        if hasattr(bot1, 'set_opponent'):
-            bot1.set_opponent(bot2.name)
-        if hasattr(bot2, 'set_opponent'):
-            bot2.set_opponent(bot1.name)
+        self.set_opponent_names(bot1, bot2)
 
         # Initialize match data
         bot1_actions: List[str] = []
@@ -56,10 +53,6 @@ class MatchSimulator:
             # Get simultaneous actions
             action1 = bot1.choose_action(bot2_actions[-1] if bot2_actions else None)
             action2 = bot2.choose_action(bot1_actions[-1] if bot1_actions else None)
-            
-            # Notify both bots of the results
-            bot1.notify_turn_result(action1, action2, bot2.name)
-            bot2.notify_turn_result(action2, action1, bot1.name)
             
             # Store actions and update payoffs
             bot1_actions.append(action1)
@@ -91,3 +84,10 @@ class MatchSimulator:
         if self.last_match_results is None:
             raise RuntimeError("No match has been simulated yet")
         return self.last_match_results
+
+    # HELPERS
+    def set_opponent_names(self, bot1: BaseBot, bot2: BaseBot) -> None:
+        if hasattr(bot1, 'set_opponent'):
+            bot1.set_opponent(bot2.name)
+        if hasattr(bot2, 'set_opponent'):
+            bot2.set_opponent(bot1.name)
