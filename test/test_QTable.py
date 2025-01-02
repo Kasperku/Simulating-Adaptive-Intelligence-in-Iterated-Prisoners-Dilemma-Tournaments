@@ -11,12 +11,13 @@ class TestQTable(unittest.TestCase):
     def test_initialization(self):
         """Test that QTable initializes with correct structure and zero values"""
         # Check structure
-        self.assertEqual(set(self.qtable.table.keys()), {COOPERATE, DEFECT})
+        expected_states = {COOPERATE, DEFECT, None}
+        self.assertEqual(set(self.qtable.table.keys()), expected_states)
         for state in self.states:
             self.assertEqual(set(self.qtable.table[state].keys()), {COOPERATE, DEFECT})
         
         # Check initial values are 0
-        for state in self.states:
+        for state in expected_states:
             for action in self.actions:
                 self.assertEqual(self.qtable.get_q_value(state, action), 0.0)
 
