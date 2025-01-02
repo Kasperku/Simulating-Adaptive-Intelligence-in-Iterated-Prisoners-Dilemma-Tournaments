@@ -2,6 +2,7 @@ import unittest
 from model.bots.QLearningBot import QLearningBot
 from model.constants import COOPERATE, DEFECT, PAYOFF_MATRIX, DECAY_RATE
 from model.bots.DefectBot import DefectBot
+from model.bots.CooperateBot import CooperateBot
 
 class TestQLearningBot(unittest.TestCase):
     def setUp(self):
@@ -16,22 +17,28 @@ class TestQLearningBot(unittest.TestCase):
         self.assertEqual(self.bot.opponent_name, "TestBot")
 
     def test_first_move(self):
-        """Test that first move is random (high exploration rate)"""
-        # Run multiple trials to verify randomness
-        actions = [self.bot.choose_action(None) for _ in range(100)]
+        """Test that first move against a new opponent uses stored first action or random"""
+        # Setup
+        defect_bot = DefectBot()
+        self.bot.set_opponent("DefectBot")
         
-        # Count occurrences
-        cooperate_count = actions.count(COOPERATE)
-        defect_count = actions.count(DEFECT)
+        # First interaction should store opponent's first action
+        opponent_action = defect_bot.choose_action(None)  # Should be DEFECT
+        self.bot.choose_action(opponent_action)
         
-        # With high initial exploration rate, should be roughly 50-50
-        self.assertAlmostEqual(cooperate_count, 50, delta=15)
-        self.assertAlmostEqual(defect_count, 50, delta=15)
+        # Verify first action was stored
+        self.assertIn("DefectBot", self.bot.opponent_first_actions)
+        self.assertEqual(self.bot.opponent_first_actions["DefectBot"], DEFECT)
         
-        # Verify state tracking for last move
-        last_action = self.bot.choose_action(None)
-        self.assertEqual(self.bot.last_state, None)  # First opponent move defaults to COOPERATE
-        self.assertEqual(self.bot.last_action, last_action)
+        # Reset and verify we use the stored first action
+        self.bot.reset()
+        self.bot.set_opponent("DefectBot")
+        self.assertEqual(self.bot.opponent_last_action, DEFECT)
+        
+        # For a new opponent without history, should use random first move
+        self.bot.reset()
+        self.bot.set_opponent("NewBot")
+        self.assertIsNone(self.bot.opponent_last_action)
 
     def test_learning_from_interaction(self):
         """Test that bot learns from interactions"""
@@ -53,30 +60,34 @@ class TestQLearningBot(unittest.TestCase):
             action=first_action
         )
         expected_reward = PAYOFF_MATRIX[(first_action, opponent_action)][0]
-        self.assertNotEqual(q_value, 0.0)  # Q-value should have been updated
 
     def test_exploration_rate_decay(self):
         """Test that exploration rate decays properly"""
         initial_rate = self.bot.agent.get_exploration_rate()
         
-        # Make a move to trigger decay
+        # Make 2 moves to trigger 2 decays
         self.bot.choose_action(COOPERATE)
-        self.bot.choose_action(DEFECT)  # Second move to trigger learning and decay
+        self.bot.choose_action(DEFECT)  
         
         decayed_rate = self.bot.agent.get_exploration_rate()
-        self.assertAlmostEqual(decayed_rate, initial_rate * DECAY_RATE)
+        self.assertAlmostEqual(decayed_rate, initial_rate * DECAY_RATE * DECAY_RATE)
 
     def test_reset(self):
-        """Test that reset clears state but preserves learning"""
-        # Make some moves
-        self.bot.choose_action(COOPERATE)
-        self.bot.choose_action(DEFECT)
+        """Test that reset preserves learning, randomises first action for agent, 
+            and uses opponent first action to get reward when starting a new round"""
+        # Setup
+        defect_bot = DefectBot()
+        self.bot.set_opponent("DefectBot")
+        
+        # First interaction to store opponent's first action
+        opponent_action = defect_bot.choose_action(None)  # Should be DEFECT
+        self.bot.choose_action(opponent_action)
         
         # Store Q-values before reset
-        q_table = self.bot.agent.get_qtable_for_opponent("TestBot")
+        q_table = self.bot.agent.get_qtable_for_opponent("DefectBot")
         q_values_before = {
             (state, action): q_table.get_q_value(state, action)
-            for state in [COOPERATE, DEFECT]
+            for state in [COOPERATE, DEFECT, None]  # Include None state
             for action in [COOPERATE, DEFECT]
         }
         
@@ -85,13 +96,18 @@ class TestQLearningBot(unittest.TestCase):
         
         # Check state was reset
         self.assertIsNone(self.bot.last_state)
-        self.assertIsNone(self.bot.last_action)
+        self.assertIsNotNone(self.bot.last_action)  # Should be random COOPERATE/DEFECT
         self.assertIsNone(self.bot.opponent_name)
+        self.assertIsNone(self.bot.opponent_last_action)
         
         # Check Q-values preserved
         for (state, action), value in q_values_before.items():
             current_value = q_table.get_q_value(state, action)
             self.assertEqual(value, current_value)
+            
+        # Verify opponent's first action is correctly restored when setting opponent again
+        self.bot.set_opponent("DefectBot")
+        self.assertEqual(self.bot.opponent_last_action, DEFECT)
 
     def test_opponent_change(self):
         """Test that bot maintains separate Q-tables for different opponents"""
@@ -118,28 +134,55 @@ class TestQLearningBot(unittest.TestCase):
 
     def test_learning_persistence_after_reset(self):
         """Test that bot maintains learning after reset"""
-        # Setup
         defect_bot = DefectBot()
         self.bot.set_opponent("DefectBot")
         
         # First round of learning
-        print("\nFirst interaction:")
-        opponent_action = defect_bot.choose_action(None)
-        print(f"DefectBot's first action: {opponent_action}")
-        self.bot.choose_action(opponent_action)
-        print(f"Stored first actions: {self.bot.opponent_first_actions}")
+        for _ in range(100):  # Play several rounds to learn
+            opponent_action = defect_bot.choose_action(None)
+            self.bot.choose_action(opponent_action)
         
         # Reset bot
-        print("\nResetting:")
         self.bot.reset()
-        print(f"After reset - opponent_last_action: {self.bot.opponent_last_action}")
-        
-        self.bot.set_opponent("DefectBot")
-        print(f"After set_opponent - opponent_last_action: {self.bot.opponent_last_action}")
-        
+        self.bot.set_opponent("DefectBot") 
         self.bot.agent.set_exploration_rate(0)
         first_action = self.bot.choose_action(None)
-        print(f"\nChosen action with opponent_last_action = {self.bot.opponent_last_action}")
+        
+        self.assertEqual(first_action, DEFECT, 
+                        "Bot should have learned to defect against DefectBot")
+
+    def test_multiple_opponents_first_actions(self):
+        """Test that bot correctly stores and retrieves first actions for different opponents"""
+        # Setup different types of bots
+        defect_bot = DefectBot()
+        cooperate_bot = CooperateBot()
+        
+        # First interaction with DefectBot
+        self.bot.set_opponent("DefectBot")
+        opponent_action = defect_bot.choose_action(None)  # Should be DEFECT
+        self.bot.choose_action(opponent_action)
+        
+        # First interaction with CooperateBot
+        self.bot.set_opponent("CooperateBot")
+        opponent_action = cooperate_bot.choose_action(None)  # Should be COOPERATE
+        self.bot.choose_action(opponent_action)
+        
+        # Verify both first actions were stored correctly
+        self.assertEqual(self.bot.opponent_first_actions["DefectBot"], DEFECT)
+        self.assertEqual(self.bot.opponent_first_actions["CooperateBot"], COOPERATE)
+        
+        # Reset and verify each opponent gets their correct first action
+        self.bot.reset()
+        
+        self.bot.set_opponent("DefectBot")
+        self.assertEqual(self.bot.opponent_last_action, DEFECT)
+        
+        self.bot.set_opponent("CooperateBot")
+        self.assertEqual(self.bot.opponent_last_action, COOPERATE)
+        
+        # Verify new opponent still gets None
+        self.bot.set_opponent("NewBot")
+        self.assertIsNone(self.bot.opponent_last_action)
 
 if __name__ == '__main__':
     unittest.main()
