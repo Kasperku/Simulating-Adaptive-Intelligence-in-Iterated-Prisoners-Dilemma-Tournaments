@@ -36,12 +36,12 @@ class QLearningBot(BaseBot):
 
         current_state = opponent_last_action
         
-        # Learn from previous interaction
-        if self.last_action is not None:
+        # Learn from previous interaction (only if we have both actions)
+        if self.last_action is not None and opponent_last_action is not None:
             reward = PAYOFF_MATRIX[(self.last_action, opponent_last_action)][0]
             self.agent.update_q_value(
                 self.opponent_name,
-                state=None if self.last_state is None else self.last_state,  # Preserve None state
+                state=self.last_state,
                 action=self.last_action,
                 reward=reward,
                 next_state=current_state
@@ -79,28 +79,13 @@ class QLearningBot(BaseBot):
 
     def set_opponent(self, opponent_name: str) -> None:
         self.opponent_name = opponent_name
+        # Get stored first action for this opponent if we have one
+        self.opponent_last_action = self.opponent_first_actions.get(opponent_name, None)
 
     def reset(self) -> None:
         self.last_state = None
         self.last_action = random.choice([COOPERATE, DEFECT])
         # Store the current opponent name before resetting it
         current_opponent = self.opponent_name
-        self.opponent_last_action = (
-            self.opponent_first_actions.get(current_opponent, None)
-            if current_opponent
-            else None
-        )
-        # Now we can reset the opponent name
         self.opponent_name = None
-
-    def notify_turn_result(self, my_action: str, opponent_action: str, opponent_name: str) -> None:
-        """Learn from the turn result immediately"""
-        reward = PAYOFF_MATRIX[(my_action, opponent_action)][0]
-        self.agent.update_q_value(
-            opponent_name,
-            state=self.last_state,
-            action=my_action,
-            reward=reward,
-            next_state=opponent_action
-        )
-        self.last_state = opponent_action
+        self.opponent_last_action = None
