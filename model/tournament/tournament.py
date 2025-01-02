@@ -2,7 +2,6 @@ from typing import List, Dict
 from model.bots.BaseBot import BaseBot
 from model.tournament.MatchSimulator import MatchSimulator
 from model.tournament.ResultManager import ResultManager
-from model.bots.QLearningBot import QLearningBot
 
 
 class Tournament:
@@ -65,12 +64,6 @@ class Tournament:
             for j in range(i + 1, len(self.participants)):
                 bot1 = self.participants[i]
                 bot2 = self.participants[j]
-
-                # Set opponent names for QLearningBot if present
-                if isinstance(bot1, QLearningBot):
-                    bot1.set_opponent(bot2.name)
-                if isinstance(bot2, QLearningBot):
-                    bot2.set_opponent(bot1.name)
 
                 for _ in range(Tournament.MATCHES_PER_PAIR):
                     match_result = self.match_simulator.simulate_match(bot1, bot2, round_number)

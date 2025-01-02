@@ -39,6 +39,12 @@ class MatchSimulator:
         if round_num <= 0:
             raise ValueError("Number of rounds must be positive")
 
+        # Set opponent names if bots support it
+        if hasattr(bot1, 'set_opponent'):
+            bot1.set_opponent(bot2.name)
+        if hasattr(bot2, 'set_opponent'):
+            bot2.set_opponent(bot1.name)
+
         # Initialize match data
         bot1_actions: List[str] = []
         bot2_actions: List[str] = []
@@ -47,16 +53,17 @@ class MatchSimulator:
 
         # Play turns_per_match number of turns (not round_num)
         for _ in range(self.turns_per_match):
-            action1 = bot1.choose_action(bot2_actions[-1] if bot2_actions else COOPERATE)
-            action2 = bot2.choose_action(bot1_actions[-1] if bot1_actions else COOPERATE)
+            # Get simultaneous actions
+            action1 = bot1.choose_action(bot2_actions[-1] if bot2_actions else None)
+            action2 = bot2.choose_action(bot1_actions[-1] if bot1_actions else None)
             
-            # Convert None or string actions to COOPERATE/DEFECT constants
-            action1 = COOPERATE if action1 in [None, COOPERATE] else DEFECT
-            action2 = COOPERATE if action2 in [None, COOPERATE] else DEFECT
+            # Notify both bots of the results
+            bot1.notify_turn_result(action1, action2, bot2.name)
+            bot2.notify_turn_result(action2, action1, bot1.name)
             
+            # Store actions and update payoffs
             bot1_actions.append(action1)
             bot2_actions.append(action2)
-            
             payoffs = self.payoff_matrix[(action1, action2)]
             bot1_total_payoff += payoffs[0]
             bot2_total_payoff += payoffs[1]
