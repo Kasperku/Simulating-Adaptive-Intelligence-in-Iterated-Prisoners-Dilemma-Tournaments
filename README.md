@@ -2,6 +2,8 @@
 
 ## Sensitivity Analysis of payoff dynamics in a Prisoner's dilemma tournament played by Adaptive AI and other traditional strategies
 
+## This project is a work in progress.
+
 ## Background and Context
 
 In organizations, team dynamics play a crucial role in determining collective performance, productivity, and morale. Teams often consist of individuals with diverse behavioral tendencies, ranging from cooperative, altruistic workers to self-serving or even toxic counterparts. Individuals might be tempted to undermine the other, take full credit, or subtly sabotage the other’s effort to appear more competent, perhaps to compete for a promotion, though creating a harmonious work environment would make everyone better off. Understanding how these behaviors influence one another is essential for fostering an effective and harmonious workplace. The Prisoner's Dilemma, a fundamental concept in game theory, offers a robust framework for analyzing such interactions. It models the choices between cooperation and defection, mirroring the tension between collective goals and individual incentives. By applying this framework, this research examines how different behavioral archetypes—cooperative, competitive, and conditional—interact and influence team dynamics in workplace-like scenarios.
