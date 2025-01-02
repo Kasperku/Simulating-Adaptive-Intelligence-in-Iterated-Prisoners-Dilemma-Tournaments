@@ -89,8 +89,11 @@ class ResultManager:
     def _count_actions(self, aggregate_stats: Dict, bot_name: str, result: Dict):
         """Helper method to count cooperate and defect actions"""
         actions = result[f"{bot_name}{ACTIONS_SUFFIX}"]
-        aggregate_stats[bot_name][COOPERATE_COUNT] += actions.count(COOPERATE)
-        aggregate_stats[bot_name][DEFECT_COUNT] += actions.count(DEFECT)
+        cooperate_count = actions.count(COOPERATE)
+        defect_count = actions.count(DEFECT)
+        print(f"Match actions for {bot_name}: {cooperate_count} cooperates, {defect_count} defects")
+        aggregate_stats[bot_name][COOPERATE_COUNT] += cooperate_count
+        aggregate_stats[bot_name][DEFECT_COUNT] += defect_count
 
         return aggregate_stats
 

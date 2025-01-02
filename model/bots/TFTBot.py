@@ -12,7 +12,7 @@ class TFTBot(BaseBot):
 
     def __init__(self):
         super().__init__(name="TFTBot")
-        self.is_first_round = True # check whether it is the start of a round
+        self.is_first_round = True 
 
     # returns "Cooperate" if first move, then copies opponents last move.
     def choose_action(self, opponent_last_action: str) -> str:

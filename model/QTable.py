@@ -1,5 +1,5 @@
 from typing import Dict, List
-
+from model.constants import COOPERATE, DEFECT
 
 class QTable:
     """
@@ -17,13 +17,15 @@ class QTable:
 
         Args:
             states (List[str]): The possible states, aka opponents last action, which
-                                could be COOPERATE or DEFECT
-            actions (List[str]): The possible actions, aka either COOPERATE or DEFECT
+                                could be COOPERATE or DEFECT or None
+            actions (List[str]): The possible actions, aka either COOPERATE or DEFECT or None
         """
-        self.table: Dict[str, Dict[str, float]] = {
-            state: {action: 0.0 for action in actions} for state in states
+        self.table = {
+            None: {COOPERATE: 0.0, DEFECT: 0.0},  # Add None state
+            COOPERATE: {COOPERATE: 0.0, DEFECT: 0.0},
+            DEFECT: {COOPERATE: 0.0, DEFECT: 0.0}
         }
-    
+
     # Getters
     def get_table(self) -> dict: 
         return self.table
