@@ -42,11 +42,14 @@ class TestQLearningBot(unittest.TestCase):
 
     def test_learning_from_interaction(self):
         """Test that bot learns from interactions"""
-        # First interaction
-        first_action = self.bot.choose_action(COOPERATE)
+        self.bot.set_opponent("TestBot")
         
-        # Second interaction - should learn from first
-        opponent_action = DEFECT
+        # First interaction - bot cooperates against cooperation
+        first_action = self.bot.choose_action(COOPERATE)
+        initial_q = self.bot.agent.get_q_value("TestBot", COOPERATE, first_action)
+        
+        # Second interaction with COOPERATE - should get positive reward
+        opponent_action = COOPERATE  # Changed from DEFECT to COOPERATE
         second_action = self.bot.choose_action(opponent_action)
         
         # Verify state was updated
@@ -54,12 +57,20 @@ class TestQLearningBot(unittest.TestCase):
         self.assertEqual(self.bot.last_action, second_action)
         
         # Verify Q-value was updated
-        q_value = self.bot.agent.get_q_value(
+        updated_q = self.bot.agent.get_q_value(
             "TestBot",
             state=COOPERATE,
             action=first_action
         )
-        expected_reward = PAYOFF_MATRIX[(first_action, opponent_action)][0]
+        
+        # Q-value should change after learning
+        self.assertNotEqual(initial_q, updated_q, 
+            "Q-value should be updated after interaction")
+        
+        # Q-value should reflect the reward from payoff matrix (3 for mutual cooperation)
+        expected_reward = PAYOFF_MATRIX[(first_action, opponent_action)][0]  # Should be 3
+        self.assertGreater(updated_q, initial_q, 
+            f"Q-value should increase from {initial_q} to {updated_q} with reward {expected_reward}")
 
     def test_exploration_rate_decay(self):
         """Test that exploration rate decays properly"""
