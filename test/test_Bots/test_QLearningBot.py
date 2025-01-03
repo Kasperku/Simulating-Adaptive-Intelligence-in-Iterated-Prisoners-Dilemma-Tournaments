@@ -73,15 +73,37 @@ class TestQLearningBot(unittest.TestCase):
             f"Q-value should increase from {initial_q} to {updated_q} with reward {expected_reward}")
 
     def test_exploration_rate_decay(self):
-        """Test that exploration rate decays properly"""
-        initial_rate = self.bot.agent.get_exploration_rate()
+        """Test that exploration rate decays properly and independently for each opponent"""
+        # Setup 
+        self.bot.set_opponent("Opponent1")
+        initial_rate1 = self.bot.agent.get_exploration_rate("Opponent1")
         
-        # Make 2 moves to trigger 2 decays
+        # Make moves against first opponent
         self.bot.choose_action(COOPERATE)
-        self.bot.choose_action(DEFECT)  
+        self.bot.choose_action(DEFECT)
         
-        decayed_rate = self.bot.agent.get_exploration_rate()
-        self.assertAlmostEqual(decayed_rate, initial_rate * DECAY_RATE * DECAY_RATE)
+        # Check decay for first opponent
+        decayed_rate1 = self.bot.agent.get_exploration_rate("Opponent1")
+        self.assertAlmostEqual(decayed_rate1, initial_rate1 * DECAY_RATE * DECAY_RATE)
+        
+        # Setup second opponent
+        self.bot.set_opponent("Opponent2")
+        initial_rate2 = self.bot.agent.get_exploration_rate("Opponent2")
+        
+        # Make one move against second opponent
+        self.bot.choose_action(COOPERATE)
+        
+        # Check rates
+        self.assertAlmostEqual(
+            self.bot.agent.get_exploration_rate("Opponent2"), 
+            initial_rate2 * DECAY_RATE,
+            msg="Second opponent's rate should decay once"
+        )
+        self.assertAlmostEqual(
+            self.bot.agent.get_exploration_rate("Opponent1"),
+            decayed_rate1,
+            msg="First opponent's rate should remain unchanged"
+        )
 
     def test_reset(self):
         """Test that reset preserves learning, randomises first action for agent, 
@@ -156,7 +178,7 @@ class TestQLearningBot(unittest.TestCase):
         # Reset bot
         self.bot.reset()
         self.bot.set_opponent("DefectBot") 
-        self.bot.agent.set_exploration_rate(0)
+        self.bot.agent.set_exploration_rate("DefectBot", 0)
         first_action = self.bot.choose_action(None)
         
         self.assertEqual(first_action, DEFECT, 
