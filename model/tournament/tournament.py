@@ -39,6 +39,9 @@ class Tournament:
 
     def get_result_manager(self) -> ResultManager:
         return self.result_manager
+    
+    def get_results(self) -> List[Dict]:
+        return self.result_manager.get_all_results()
 
     # Tournament logic
     def run_tournament(self):
@@ -73,9 +76,6 @@ class Tournament:
         return round_results
 
     def reset_bots(self):
-        """
-        Resets all bots to their initial state for the next round.
-        """
         for bot in self.participants:
             bot.reset()
 
@@ -88,12 +88,3 @@ class Tournament:
         """
         for result in match_results:
             self.result_manager.record_result(result)
-
-    def get_results(self) -> List[Dict]:
-        """
-        Retrieves the results of the tournament.
-
-        Returns:
-            List[Dict]: A list of recorded results from the ResultManager.
-        """
-        return self.result_manager.get_all_results()
