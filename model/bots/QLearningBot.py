@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Dict
 from model.bots.BaseBot import BaseBot
 from model.QLearningAgent import QLearningAgent
 from model.constants import COOPERATE, DEFECT, PAYOFF_MATRIX, DECAY_RATE
@@ -23,36 +23,41 @@ class QLearningBot(BaseBot):
         self.tournament_num = 0
         self.round_num = 0
         self.turn_num = 0
+    
+    def _get_current_q_values(self, current_state: str) -> Dict[str, float]:
+        """Get current Q-values for both actions"""
+        return {
+            'COOPERATE': self.agent.get_q_value(self.opponent_name, current_state, COOPERATE),
+            'DEFECT': self.agent.get_q_value(self.opponent_name, current_state, DEFECT)
+        }
 
-    def choose_action(self, opponent_last_action: Optional[str]) -> str:
-        # If opponent_last_action is None, use our stored first action
+    def _handle_first_action(self, opponent_last_action: Optional[str]) -> str:
+        """Handle and store first action from opponent"""
         if opponent_last_action is None:
-            opponent_last_action = self.opponent_last_action
-
-        # Store first action we see from this opponent
-        if self.opponent_name and opponent_last_action is not None:
-            if self.opponent_name not in self.opponent_first_actions:
-                self.opponent_first_actions[self.opponent_name] = opponent_last_action
-
-        current_state = opponent_last_action
-        
-        # Learn from previous interaction (only if we have both actions)
-        if self.last_action is not None and opponent_last_action is not None:
-            reward = PAYOFF_MATRIX[(self.last_action, opponent_last_action)][0]
-            self.agent.update_q_value(
-                self.opponent_name,
-                state=self.last_state,
-                action=self.last_action,
-                reward=reward,
-                next_state=current_state
-            )
+            return self.opponent_last_action
             
-            # Get Q-values using agent methods
-            current_q_values = {
-                'COOPERATE': self.agent.get_q_value(self.opponent_name, current_state, COOPERATE),
-                'DEFECT': self.agent.get_q_value(self.opponent_name, current_state, DEFECT)
-            }
+        if self.opponent_name and self.opponent_name not in self.opponent_first_actions:
+            self.opponent_first_actions[self.opponent_name] = opponent_last_action
+        return opponent_last_action
+
+    def _learn_from_previous_interaction(self, current_state: str, opponent_last_action: str) -> Optional[float]:
+        """Learn from previous interaction and return reward if applicable"""
+        if self.last_action is None or opponent_last_action is None:
+            return None
             
+        reward = PAYOFF_MATRIX[(self.last_action, opponent_last_action)][0]
+        self.agent.update_q_value(
+            self.opponent_name,
+            state=self.last_state,
+            action=self.last_action,
+            reward=reward,
+            next_state=current_state
+        )
+        return reward
+
+    def _log_interaction(self, current_state: str, reward: Optional[float], q_values: Dict[str, float]) -> None:
+        """Log the current interaction"""
+        if self.last_action is not None:  # Only log if we have a previous action
             self.logger.log_interaction(
                 tournament_num=self.tournament_num,
                 round_num=self.round_num,
@@ -61,21 +66,43 @@ class QLearningBot(BaseBot):
                 opponent_name=self.opponent_name,
                 state=str(current_state),
                 action_taken=self.last_action,
-                reward=reward,
-                q_values=current_q_values,
+                reward=reward if reward is not None else 0.0,
+                q_values=q_values,
                 exploration_rate=self.agent.get_exploration_rate(self.opponent_name)
             )
+
+    def _store_state_and_action(self, current_state: str, action: str) -> None:
+        """Store current state and action for next learning update"""
+        self.last_state = current_state
+        self.last_action = action
+
+    def _decay_exploration_rate(self) -> None:
+        """Decay exploration rate for current opponent"""
+        if self.opponent_name:
+            self.agent.decay_exploration_rate(self.opponent_name, DECAY_RATE)
+
+    def choose_action(self, opponent_last_action: Optional[str]) -> str:
+        """Update learning from last interaction and choose next action"""
+        # Handle first action logic
+        current_state = self._handle_first_action(opponent_last_action)
+        
+        # Learn from previous interaction
+        reward = self._learn_from_previous_interaction(current_state, opponent_last_action)
+        
+        # Get current Q-values
+        q_values = self._get_current_q_values(current_state)
+        
+        # Log interaction
+        self._log_interaction(current_state, reward, q_values)
         
         # Choose action for current state
         action = self.agent.choose_action(self.opponent_name, current_state)
         
-        # Store state and action for next learning update
-        self.last_state = current_state
-        self.last_action = action
+        # Store state and action
+        self._store_state_and_action(current_state, action)
 
-        # Decay exploration rate for this specific opponent
-        if self.opponent_name:  
-            self.agent.decay_exploration_rate(self.opponent_name, DECAY_RATE)
+        # Update exploration rate
+        self._decay_exploration_rate()
         
         return action
 
