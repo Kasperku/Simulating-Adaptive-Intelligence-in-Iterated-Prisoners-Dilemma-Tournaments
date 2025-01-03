@@ -91,6 +91,7 @@ class ResultManager:
         actions = result[f"{bot_name}{ACTIONS_SUFFIX}"]
         cooperate_count = actions.count(COOPERATE)
         defect_count = actions.count(DEFECT)
+        print(f"Actions for {bot_name}: {cooperate_count} cooperates, {defect_count} defects")
         aggregate_stats[bot_name][COOPERATE_COUNT] += cooperate_count
         aggregate_stats[bot_name][DEFECT_COUNT] += defect_count
 

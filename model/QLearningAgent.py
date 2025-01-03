@@ -73,7 +73,6 @@ class QLearningAgent:
         """Decay exploration rate for specific opponent"""
         old_rate = self.get_exploration_rate(opponent_name)
         new_rate = old_rate * decay_rate
-        print(f"Decaying rate for {opponent_name}: {old_rate} -> {new_rate}")
         self.set_exploration_rate(opponent_name, new_rate)
 
     def initialize_q_table_for_opponent(self, opponent_name: str):
@@ -84,9 +83,8 @@ class QLearningAgent:
     def initialize_exploration_rate(self, opponent_name: str):
         """Initialize exploration rate for a new opponent"""
         if opponent_name not in self.exploration_rates:
-            print(f"Initializing exploration rate for {opponent_name}")
             self.exploration_rates[opponent_name] = DEFAULT_EXPLORATION_RATE
-        print(f"Current exploration rates: {self.exploration_rates}")
+
 
     def update_q_value(self, opponent_name: str, state: str, action: str,
                        reward: float, next_state: str):
