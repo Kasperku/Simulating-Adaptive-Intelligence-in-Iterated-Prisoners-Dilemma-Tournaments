@@ -34,6 +34,7 @@ class QLearningAgent:
         # the key of the dictionary str is the NAME of the BOT
         # the value is the QTable for that specific opponent
         self.QTables: Dict[str, QTable] = {}
+        self.exploration_rates = {}  
 
     # Getters
     def get_learning_rate(self):
@@ -42,8 +43,8 @@ class QLearningAgent:
     def get_discount_factor(self):
         return self.discount_factor
 
-    def get_exploration_rate(self):
-        return self.exploration_rate
+    def get_exploration_rate(self, opponent_name: str) -> float:
+        return self.exploration_rates.get(opponent_name, DEFAULT_EXPLORATION_RATE)
     
     def get_qtables(self):
         return self.QTables
@@ -59,22 +60,33 @@ class QLearningAgent:
         return self.get_qtable_for_opponent(opponent_name).get_q_value(state, action)
     
     # Setters
-    def set_exploration_rate(self, exploration_rate):
-        if not (0.0 <= exploration_rate <= 1.0):
+    def set_exploration_rate(self, opponent_name: str, rate: float) -> None:
+        if not 0 <= rate <= 1:
             raise ValueError("Exploration rate must be between 0 and 1")
-        self.exploration_rate = exploration_rate
+        self.exploration_rates[opponent_name] = rate
     
     def set_qtable_for_opponent(self, opponent_name: str, qtable: QTable):
         self.QTables[opponent_name] = qtable
     
 
-    def decay_exploration_rate(self, decay_rate: float):
-        self.set_exploration_rate(self.get_exploration_rate()*decay_rate)
+    def decay_exploration_rate(self, opponent_name: str, decay_rate: float) -> None:
+        """Decay exploration rate for specific opponent"""
+        old_rate = self.get_exploration_rate(opponent_name)
+        new_rate = old_rate * decay_rate
+        print(f"Decaying rate for {opponent_name}: {old_rate} -> {new_rate}")
+        self.set_exploration_rate(opponent_name, new_rate)
 
     def initialize_q_table_for_opponent(self, opponent_name: str):
+        """Initialize Q-table for a new opponent"""
         if opponent_name not in self.QTables:
             self.set_qtable_for_opponent(opponent_name, QTable(states=self.actions, actions=self.actions))
-    
+
+    def initialize_exploration_rate(self, opponent_name: str):
+        """Initialize exploration rate for a new opponent"""
+        if opponent_name not in self.exploration_rates:
+            print(f"Initializing exploration rate for {opponent_name}")
+            self.exploration_rates[opponent_name] = DEFAULT_EXPLORATION_RATE
+        print(f"Current exploration rates: {self.exploration_rates}")
 
     def update_q_value(self, opponent_name: str, state: str, action: str,
                        reward: float, next_state: str):
@@ -90,7 +102,7 @@ class QLearningAgent:
                              self.get_discount_factor(), next_state)
 
 
-    def choose_action(self, opponent_name, state):
+    def choose_action(self, opponent_name: str, state: str) -> str:
         """
         Selects an action for the agent using the ε-greedy policy.
 
@@ -101,7 +113,7 @@ class QLearningAgent:
         Returns:
             str: The action that yields the highest payoff, either one if tie
         """
-        if random.random() < self.get_exploration_rate():
+        if random.random() < self.get_exploration_rate(opponent_name):  # Updated to use opponent-specific rate
             return random.choice([COOPERATE, DEFECT])
         else:
             best_actions = self._choose_best_action(opponent_name, state)

@@ -63,7 +63,7 @@ class QLearningBot(BaseBot):
                 action_taken=self.last_action,
                 reward=reward,
                 q_values=current_q_values,
-                exploration_rate=self.agent.get_exploration_rate()
+                exploration_rate=self.agent.get_exploration_rate(self.opponent_name)
             )
         
         # Choose action for current state
@@ -73,7 +73,9 @@ class QLearningBot(BaseBot):
         self.last_state = current_state
         self.last_action = action
 
-        self.agent.decay_exploration_rate(DECAY_RATE)
+        # Decay exploration rate for this specific opponent
+        if self.opponent_name:  
+            self.agent.decay_exploration_rate(self.opponent_name, DECAY_RATE)
         
         return action
 
@@ -81,6 +83,9 @@ class QLearningBot(BaseBot):
         self.opponent_name = opponent_name
         # Get stored first action for this opponent if we have one
         self.opponent_last_action = self.opponent_first_actions.get(opponent_name, None)
+        # Initialize separate Q-table and exploration rate
+        self.agent.initialize_q_table_for_opponent(opponent_name)
+        self.agent.initialize_exploration_rate(opponent_name)
 
     def reset(self) -> None:
         self.last_state = None
@@ -89,3 +94,5 @@ class QLearningBot(BaseBot):
         current_opponent = self.opponent_name
         self.opponent_name = None
         self.opponent_last_action = None
+
+        
