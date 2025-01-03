@@ -32,7 +32,7 @@ class InteractionLogger:
             'exploration_rate': exploration_rate
         })
     
-    def export_to_csv(self, filename: str = 'interaction_log.csv'):
+    def export_to_csv(self, filename: str = 'qlearning_interaction_log.csv'):
         if not self.interactions:
             return
             

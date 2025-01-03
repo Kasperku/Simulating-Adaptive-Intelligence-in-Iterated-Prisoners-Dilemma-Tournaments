@@ -27,11 +27,11 @@ def main():
         bots = [
             qbot1,
             #qbot2,
-            #GrimBot(),
+            GrimBot(),
             TFTBot(),
-            #TFT90Bot(),
-            #DefectBot(),
-            #CooperateBot()
+            TFT90Bot(),
+            DefectBot(),
+            CooperateBot()
         ]
         
         # Create tournament components
