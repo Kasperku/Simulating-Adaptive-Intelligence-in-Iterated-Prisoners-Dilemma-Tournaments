@@ -82,29 +82,35 @@ class QLearningBot(BaseBot):
             self.agent.decay_exploration_rate(self.opponent_name, DECAY_RATE)
 
     def choose_action(self, opponent_last_action: Optional[str]) -> str:
-        """Update learning from last interaction and choose next action"""
-        # Handle first action logic
+        """Choose next action based on current state"""
         current_state = self._handle_first_action(opponent_last_action)
+        return self.agent.choose_action(self.opponent_name, current_state)
+
+    def learn_from_interaction(self, my_action: str, opponent_action: str) -> None:
+        """Learn from the interaction that just occurred"""
+        current_state = opponent_action
+        reward = PAYOFF_MATRIX[(my_action, opponent_action)][0]
         
-        # Learn from previous interaction
-        reward = self._learn_from_previous_interaction(current_state, opponent_last_action)
+        # Learn from interaction
+        self.agent.update_q_value(
+            self.opponent_name,
+            state=self.last_state,
+            action=my_action,
+            reward=reward,
+            next_state=current_state
+        )
         
-        # Get current Q-values
+        # Store state for next interaction
+        self._store_state_and_action(current_state, my_action)
+        
+        # Get Q-values for logging
         q_values = self._get_current_q_values(current_state)
         
         # Log interaction
         self._log_interaction(current_state, reward, q_values)
         
-        # Choose action for current state
-        action = self.agent.choose_action(self.opponent_name, current_state)
-        
-        # Store state and action
-        self._store_state_and_action(current_state, action)
-
         # Update exploration rate
         self._decay_exploration_rate()
-        
-        return action
 
     def set_opponent(self, opponent_name: str) -> None:
         self.opponent_name = opponent_name
