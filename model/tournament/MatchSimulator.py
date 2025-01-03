@@ -1,6 +1,7 @@
 from typing import Dict, List, Optional
 from model.bots.BaseBot import BaseBot
 from model.constants import *
+from model.bots.QLearningBot import QLearningBot
 
 
 class MatchSimulator:
@@ -48,7 +49,7 @@ class MatchSimulator:
         bot1_total_payoff = 0
         bot2_total_payoff = 0
 
-        # Play turns_per_match number of turns (not round_num)
+        # Play turns_per_match number of turns
         for _ in range(self.turns_per_match):
             # Get simultaneous actions
             action1 = bot1.choose_action(bot2_actions[-1] if bot2_actions else None)
@@ -60,6 +61,12 @@ class MatchSimulator:
             payoffs = self.payoff_matrix[(action1, action2)]
             bot1_total_payoff += payoffs[0]
             bot2_total_payoff += payoffs[1]
+            
+            # Let bots learn from interaction
+            if isinstance(bot1, QLearningBot):
+                bot1.learn_from_interaction(action1, action2)
+            if isinstance(bot2, QLearningBot):
+                bot2.learn_from_interaction(action2, action1)
 
         return {
             ROUND_NUM: round_num,
