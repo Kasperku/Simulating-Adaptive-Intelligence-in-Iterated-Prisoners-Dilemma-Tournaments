@@ -57,6 +57,10 @@ class QTable:
         Returns:
             None: Updates the Q-table in-place.
         """
+        if state not in self.table:
+            self.table[state] = {COOPERATE: 0.0, DEFECT: 0.0}
+        if next_state not in self.table:
+            self.table[next_state] = {COOPERATE: 0.0, DEFECT: 0.0}
 
         current_q_value = self.get_q_value(state, action)
         max_future_q_value = max(self.get_table()[next_state].values())

@@ -91,6 +91,7 @@ class QLearningAgent:
         """
         Updates the Q-value for a state-action pair using the Q-learning formula.
         """
+        
         if opponent_name not in self.QTables:
             self.initialize_q_table_for_opponent(opponent_name)
 
@@ -109,30 +110,31 @@ class QLearningAgent:
             state (str): The current state (e.g., the opponent's last move).
 
         Returns:
-            str: The action that yields the highest payoff, either one if tie
+            str: The action that yields the highest payoff
         """
-        if random.random() < self.get_exploration_rate(opponent_name):  # Updated to use opponent-specific rate
+        if random.random() < self.get_exploration_rate(opponent_name):
             return random.choice([COOPERATE, DEFECT])
         else:
-            best_actions = self._choose_best_action(opponent_name, state)
-            return random.choice(best_actions)
+            q_table = self.get_qtable_for_opponent(opponent_name)
+            state_actions = q_table.get_table()[state]
+            return max(state_actions, key=state_actions.get)
 
 
-    # HELPER FUNCTION
-    def _choose_best_action(self, opponent_name: str, state: str) -> List[str]:
-        table = self.get_qtable_for_opponent(opponent_name)
-        defect_payoff = table.get_q_value(state, DEFECT)
-        cooperate_payoff = table.get_q_value(state, COOPERATE)
-        best_actions = []
+    # # HELPER FUNCTION
+    # def _choose_best_action(self, opponent_name: str, state: str) -> List[str]:
+    #     table = self.get_qtable_for_opponent(opponent_name)
+    #     defect_payoff = table.get_q_value(state, DEFECT)
+    #     cooperate_payoff = table.get_q_value(state, COOPERATE)
+    #     best_actions = []
 
-        if defect_payoff > cooperate_payoff:
-            best_actions.append(DEFECT)
-        elif defect_payoff < cooperate_payoff:
-            best_actions.append(COOPERATE)
-        else:  
-            best_actions.extend([DEFECT, COOPERATE])
+    #     if defect_payoff > cooperate_payoff:
+    #         best_actions.append(DEFECT)
+    #     elif defect_payoff < cooperate_payoff:
+    #         best_actions.append(COOPERATE)
+    #     else:  
+    #         best_actions.extend([DEFECT, COOPERATE])
 
-        return best_actions
+    #     return best_actions
 
 
 
