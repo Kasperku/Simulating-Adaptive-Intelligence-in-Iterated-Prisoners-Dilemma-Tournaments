@@ -4,7 +4,7 @@ from model.constants import *
 
 def export_tournament_stats(aggregate_stats: Dict, tournament_stats: List[Dict], num_tournaments: int, filename: str = "tournament_stats.csv"):
     """
-    Exports the tournament statistics to a CSV file.
+    Exports the tournament statistics to a CSV file
     
     Args:
         aggregate_stats (Dict): Dictionary containing the aggregated statistics across all tournaments

@@ -38,4 +38,6 @@ class InteractionLogger:
             
         import pandas as pd
         df = pd.DataFrame(self.interactions)
-        df.to_csv(filename, index=False) 
+        df.to_csv(filename, index=False)
+    
+    print("Test")

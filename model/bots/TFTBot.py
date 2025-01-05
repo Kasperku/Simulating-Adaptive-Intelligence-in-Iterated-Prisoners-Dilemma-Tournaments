@@ -7,7 +7,7 @@ from model.constants import COOPERATE
 class TFTBot(BaseBot):
     """
     A bot that uses the tit-for-tat strategy. Starts off cooperating,
-    then copies opponents last move.
+    then copies opponents last move
     """
 
     def __init__(self):

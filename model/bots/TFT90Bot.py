@@ -5,7 +5,7 @@ from model.constants import COOPERATE, DEFECT
 
 class TFT90Bot(BaseBot):
     """
-    A bot that uses a modified Tit-for-Tat strategy. Starts off cooperating,
+    A bot that uses a modified Tit-for-Tat strategy. Starts off cooperating
     then mirrors the opponent's last move, but has a 10% chance of forgiving defections.
     """
 

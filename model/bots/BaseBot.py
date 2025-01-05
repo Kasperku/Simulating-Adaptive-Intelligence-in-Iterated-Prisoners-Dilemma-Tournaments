@@ -2,10 +2,10 @@ from typing import Optional
 
 class BaseBot():
     """
-    Represents a generic bot for the Prisoner's Dilemma game.
+    Represents a generic bot for the Prisoner's Dilemma game
 
     This is a base class for all bot strategies. It provides a structure for implementing
-    specific strategies by defining common methods that can be overridden by subclasses.
+    specific strategies by defining common methods that can be overridden by subclasses
     """
     def __init__(self, name):
         self.name = name

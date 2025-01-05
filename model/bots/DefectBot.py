@@ -6,7 +6,7 @@ from model.constants import DEFECT
 
 class DefectBot(BaseBot):
     """
-    A bot that always Defects, regardless of the opponent's actions.
+    A bot that always Defects, regardless of the opponent's actions
     """
 
     def __init__(self):

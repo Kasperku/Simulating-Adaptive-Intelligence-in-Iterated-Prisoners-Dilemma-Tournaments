@@ -6,7 +6,7 @@ from model.constants import DEFECT, COOPERATE
 
 class GrimBot(BaseBot):
     """
-    A bot that uses the grim strategy. Starts off cooperating, until
+    A bot that uses the grim strategy. It starts off cooperating, until
     opponent defects, then it defects forever
     """
 

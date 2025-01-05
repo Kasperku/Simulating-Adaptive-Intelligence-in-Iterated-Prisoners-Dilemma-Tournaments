@@ -6,7 +6,7 @@ from model.constants import COOPERATE
 
 class CooperateBot(BaseBot):
     """
-    A bot that always cooperates, regardless of the opponent's actions.
+    A bot that always cooperates, regardless of the opponent's actions
     """
 
     def __init__(self):

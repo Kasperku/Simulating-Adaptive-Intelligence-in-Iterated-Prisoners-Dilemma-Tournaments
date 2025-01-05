@@ -3,7 +3,7 @@ from model.constants import COOPERATE, DEFECT
 
 class QTable:
     """
-    Represents a Q-table for a single opponent in the Q-learning agent.
+    Represents a Q-table for a single opponent in the Q-learning agent
 
     Attributes:
         states (List[str]): The possible states (e.g., opponent's last action).
