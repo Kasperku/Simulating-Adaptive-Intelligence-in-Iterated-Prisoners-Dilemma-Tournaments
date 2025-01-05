@@ -12,17 +12,17 @@ class TestTFTBot(unittest.TestCase):
         self.assertEqual(self.bot.name, "TFTBot")
 
     def test_choose_action_always_mirror(self):
-        self.assertEqual(self.bot.choose_action(None), COOPERATE)
-        self.assertEqual(self.bot.choose_action(COOPERATE), COOPERATE)
-        self.assertEqual(self.bot.choose_action(DEFECT), DEFECT)
-        self.assertEqual(self.bot.choose_action(COOPERATE), COOPERATE)
+        self.assertEqual(self.bot.choose_action("SomeOpponentName", None), COOPERATE)
+        self.assertEqual(self.bot.choose_action("SomeOpponentName", COOPERATE), COOPERATE)
+        self.assertEqual(self.bot.choose_action("SomeOpponentName", DEFECT), DEFECT)
+        self.assertEqual(self.bot.choose_action("SomeOpponentName", COOPERATE), COOPERATE)
 
     def test_reset(self):
         # Simulate the end of a round where the bot would defect
-        self.bot.choose_action(None)
-        self.assertEqual(self.bot.choose_action("Defect"), "Defect")
+        self.bot.choose_action("SomeOpponentName", None)
+        self.assertEqual(self.bot.choose_action("SomeOpponentName", "Defect"), "Defect")
         self.bot.reset()
-        self.assertEqual(self.bot.choose_action(None), "Cooperate")
+        self.assertEqual(self.bot.choose_action("SomeOpponentName", None), "Cooperate")
 
 
 if __name__ == "__main__":

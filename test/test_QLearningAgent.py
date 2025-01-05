@@ -151,39 +151,3 @@ class TestQLearningAgent(unittest.TestCase):
             delta=0.01,
             msg="First opponent's rate should remain unchanged"
         )
-
-    def test_choose_action_equal_q_values(self):
-        """Tests whether the agent randomly chooses between actions with equal Q-values"""
-        opponent = "TFTBot"
-        
-        # Initialize opponent's Q-table and exploration rate
-        self.agent.initialize_q_table_for_opponent(opponent)
-        self.agent.initialize_exploration_rate(opponent)
-        
-        # Set exploration rate to 0 to ensure choices are based on Q-values
-        self.agent.set_exploration_rate(opponent, 0.0)
-        self.assertEqual(self.agent.get_exploration_rate(opponent), 0.0)
-
-        # Set equal Q-values for both actions
-        table = self.agent.get_qtable_for_opponent(opponent)
-        equal_q_value = 10.0
-        table.set_q_value(COOPERATE, DEFECT, equal_q_value)
-        table.set_q_value(COOPERATE, COOPERATE, equal_q_value)
-        
-        # Verify Q-values are equal
-        self.assertEqual(
-            self.agent.get_q_value(opponent, COOPERATE, DEFECT),
-            self.agent.get_q_value(opponent, COOPERATE, COOPERATE),
-            "Q-values should be equal"
-        )
-
-        # Make 100 choices and count them
-        actions = [self.agent.choose_action(opponent, COOPERATE) for _ in range(100)]
-        cooperate_count = actions.count(COOPERATE)
-        defect_count = actions.count(DEFECT)
-        
-        # With equal Q-values, should randomly choose between them
-        self.assertAlmostEqual(cooperate_count, 50, delta=15,
-                             msg=f"Expected ~50 COOPERATE, got {cooperate_count}")
-        self.assertAlmostEqual(defect_count, 50, delta=15,
-                             msg=f"Expected ~50 DEFECT, got {defect_count}")

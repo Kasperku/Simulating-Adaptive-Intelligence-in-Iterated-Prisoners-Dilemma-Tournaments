@@ -34,7 +34,7 @@ class QLearningAgent:
         # the key of the dictionary str is the NAME of the BOT
         # the value is the QTable for that specific opponent
         self.QTables: Dict[str, QTable] = {}
-        self.exploration_rates = {}  
+        self.exploration_rates: Dict[str, float] = {}
 
     # Getters
     def get_learning_rate(self):
@@ -118,23 +118,6 @@ class QLearningAgent:
             q_table = self.get_qtable_for_opponent(opponent_name)
             state_actions = q_table.get_table()[state]
             return max(state_actions, key=state_actions.get)
-
-
-    # # HELPER FUNCTION
-    # def _choose_best_action(self, opponent_name: str, state: str) -> List[str]:
-    #     table = self.get_qtable_for_opponent(opponent_name)
-    #     defect_payoff = table.get_q_value(state, DEFECT)
-    #     cooperate_payoff = table.get_q_value(state, COOPERATE)
-    #     best_actions = []
-
-    #     if defect_payoff > cooperate_payoff:
-    #         best_actions.append(DEFECT)
-    #     elif defect_payoff < cooperate_payoff:
-    #         best_actions.append(COOPERATE)
-    #     else:  
-    #         best_actions.extend([DEFECT, COOPERATE])
-
-    #     return best_actions
 
 
 

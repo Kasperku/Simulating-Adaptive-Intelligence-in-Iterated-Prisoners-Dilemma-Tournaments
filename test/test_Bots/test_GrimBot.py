@@ -32,7 +32,7 @@ class TestGrimBot(unittest.TestCase):
         self.assertTrue(self.bot.cooperate)
 
         # Switch to defection after opponent defects
-        self.assertEqual(self.bot.choose_action(DEFECT), DEFECT)
+        self.assertEqual(self.bot.choose_action("SomeOpponentName", DEFECT), DEFECT)
         self.assertFalse(self.bot.cooperate)
 
         # Keep defecting regardless of opponent's moves
@@ -44,7 +44,7 @@ class TestGrimBot(unittest.TestCase):
     def test_reset(self):
         """Test that reset restores initial cooperative state"""
         # Make bot defect
-        self.bot.choose_action(DEFECT)
+        self.bot.choose_action("SomeOpponentName", DEFECT)
         self.assertFalse(self.bot.cooperate)
         
         # Reset should restore cooperative state
@@ -56,16 +56,16 @@ class TestGrimBot(unittest.TestCase):
         """Test that state persists between moves until reset"""
         # Start cooperative
         self.assertTrue(self.bot.cooperate)
-        self.assertEqual(self.bot.choose_action(COOPERATE), COOPERATE)
+        self.assertEqual(self.bot.choose_action("SomeOpponentName", COOPERATE), COOPERATE)
 
         # Switch to defection
-        self.assertEqual(self.bot.choose_action(DEFECT), DEFECT)
+        self.assertEqual(self.bot.choose_action("SomeOpponentName", DEFECT), DEFECT)
         self.assertFalse(self.bot.cooperate)
 
         # Create new instance to verify state isn't shared
         new_bot = GrimBot()
         self.assertTrue(new_bot.cooperate)
-        self.assertEqual(new_bot.choose_action(COOPERATE), COOPERATE)
+        self.assertEqual(new_bot.choose_action("SomeOpponentName", COOPERATE), COOPERATE)
 
 
 if __name__ == "__main__":

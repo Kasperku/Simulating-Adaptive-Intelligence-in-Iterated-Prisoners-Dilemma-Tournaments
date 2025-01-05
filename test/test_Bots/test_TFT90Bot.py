@@ -20,7 +20,7 @@ class TestTFT90Bot(unittest.TestCase):
 
         # Run the test multiple times to ensure forgiveness happens probabilistically
         for _ in range(100):
-            action = self.bot.choose_action(DEFECT)
+            action = self.bot.choose_action("SomeOpponentName", DEFECT)
             if action == COOPERATE:
                 forgiven = True
             elif action == DEFECT:
@@ -33,15 +33,15 @@ class TestTFT90Bot(unittest.TestCase):
 
     def test_choose_action_mirror_cooperate(self):
         self.bot.choose_action(None)  # First round
-        self.assertEqual(self.bot.choose_action(COOPERATE), COOPERATE)
-        self.assertEqual(self.bot.choose_action(COOPERATE), COOPERATE)
+        self.assertEqual(self.bot.choose_action("SomeOpponentName", COOPERATE), COOPERATE)
+        self.assertEqual(self.bot.choose_action("SomeOpponentName", COOPERATE), COOPERATE)
 
     def test_reset(self):
         """
         Tests if the reset method restores the bot's initial cooperative state.
         """
         # Simulate a few rounds
-        self.bot.choose_action(DEFECT)
+        self.bot.choose_action("SomeOpponentName", DEFECT)
         self.bot.reset()
 
         # Ensure it cooperates again in the first round of the new match
