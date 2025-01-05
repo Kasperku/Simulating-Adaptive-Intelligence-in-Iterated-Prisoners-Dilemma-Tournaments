@@ -14,7 +14,7 @@ class BaseBot():
         return self.name
 
     # Determines the action (Cooperate/Defect) the bot will take in the current round.
-    def choose_action(self, opponent_last_action: Optional[str]) -> str:
+    def choose_action(self, name, opponent_last_action: Optional[str]) -> str:
         """Defines the action the bot will take."""
         raise NotImplementedError("This method should be overridden by subclasses")
 

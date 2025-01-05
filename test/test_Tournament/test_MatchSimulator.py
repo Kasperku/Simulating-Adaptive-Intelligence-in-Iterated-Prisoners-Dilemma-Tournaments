@@ -38,7 +38,7 @@ class TestMatchSimulator(unittest.TestCase):
     def test_simulate_match_payoffs(self):
         bot1 = MockBot(name="CooperateBot", action=COOPERATE)
         bot2 = MockBot(name="DefectBot", action=DEFECT)
-        round_number = TURNS_PER_ROUND
+        round_number = ITERATIONS
 
         result = self.match_simulator.simulate_match(bot1, bot2, round_number)
 
@@ -50,7 +50,7 @@ class TestMatchSimulator(unittest.TestCase):
     def test_simulate_match_actions(self):
         bot1 = MockBot(name="CooperateBot", action=COOPERATE)
         bot2 = MockBot(name="DefectBot", action=DEFECT)
-        round_number = TURNS_PER_ROUND
+        round_number = ITERATIONS
 
         result = self.match_simulator.simulate_match(bot1, bot2, round_number)
 
@@ -88,7 +88,7 @@ class TestMatchSimulator(unittest.TestCase):
         """Test that payoffs accumulate correctly over multiple rounds"""
         bot1 = MockBot(name="CooperateBot", action=COOPERATE)
         bot2 = MockBot(name="DefectBot", action=DEFECT)
-        round_number = TURNS_PER_ROUND
+        round_number = ITERATIONS
         
         result = self.match_simulator.simulate_match(bot1, bot2, round_number)
         
@@ -103,7 +103,7 @@ class TestMatchSimulator(unittest.TestCase):
         """Test that action history length matches round number"""
         bot1 = MockBot(name="CooperateBot", action=COOPERATE)
         bot2 = MockBot(name="DefectBot", action=DEFECT)
-        round_number = TURNS_PER_ROUND
+        round_number = ITERATIONS
         
         result = self.match_simulator.simulate_match(bot1, bot2, round_number)
         

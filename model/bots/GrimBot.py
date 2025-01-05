@@ -14,7 +14,7 @@ class GrimBot(BaseBot):
         super().__init__(name="GrimBot")
         self.cooperate = True  # grim will start off cooperating
 
-    def choose_action(self, opponent_last_action: Optional[str] = None) -> str:
+    def choose_action(self, name, opponent_last_action: Optional[str] = None) -> str:
 
         if not self.cooperate:
             return DEFECT

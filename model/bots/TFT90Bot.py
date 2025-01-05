@@ -13,7 +13,7 @@ class TFT90Bot(BaseBot):
         super().__init__(name="TFT90Bot")
         self.is_first_round = True
 
-    def choose_action(self, opponent_last_action: Optional[str] = None) -> str:
+    def choose_action(self, name,opponent_last_action: Optional[str] = None) -> str:
         if self.is_first_round:
             self.is_first_round = False
             return COOPERATE

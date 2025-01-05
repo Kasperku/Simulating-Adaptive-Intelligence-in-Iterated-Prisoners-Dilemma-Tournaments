@@ -13,5 +13,5 @@ class CooperateBot(BaseBot):
         super().__init__(name="CooperateBot")
 
     # always returns "Cooperate" regardless of opponent_last_action
-    def choose_action(self, opponent_last_action: Optional[str] = None) -> str:
+    def choose_action(self, name, opponent_last_action: Optional[str] = None) -> str:
         return COOPERATE

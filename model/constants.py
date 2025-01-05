@@ -15,7 +15,6 @@ PAYOFF_MATRIX = {
     (DEFECT, COOPERATE): (5, 0),
     (DEFECT, DEFECT): (1, 1),
 }
-
 # tournament constants
 ROUND_NUM = "round_number"
 ACTIONS_SUFFIX = "_actions"
@@ -25,6 +24,8 @@ MATCHES_PLAYED = "matches_played"
 COOPERATE_COUNT = "cooperate_count"
 DEFECT_COUNT = "defect_count"
 COOPERATION_RATE = "cooperation_rate"
-TURNS_PER_ROUND = 200
-ROUNDS = 200
-NUM_TOURNAMENTS = 1
+ITERATIONS = 200
+ROUNDS = 1000
+NUM_TOURNAMENTS = 10
+
+

@@ -13,5 +13,5 @@ class DefectBot(BaseBot):
         super().__init__(name="DefectBot")
 
     # always returns "Defect" regardless of opponent_last_action
-    def choose_action(self, opponent_last_action: Optional[str] = None) -> str:
+    def choose_action(self, name, opponent_last_action: Optional[str] = None) -> str:
         return DEFECT
