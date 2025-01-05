@@ -6,7 +6,7 @@ from model.constants import COOPERATE, DEFECT, LEARNING_RATE, DISCOUNT_FACTOR, D
 
 class QLearningAgent:
     """
-    Represents a Q-learning agent for the Prisoner's Dilemma game
+    Represents a Q-learning agent for the Prisoner's Dilemma game.
 
     This agent learns an optimal strategy by interacting with opponents in repeated games.
     It uses a Q-table to map state-action pairs to expected rewards and updates its strategy
