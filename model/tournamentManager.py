@@ -12,7 +12,7 @@ from model.logging.csv_export import export_tournament_stats
 
 def play_game(bot1, bot2, discount_factor, logger, game_number, stats):
     """
-    Simulates a game between two bots and returns the winner based on total payoff
+    Simulates a game between two bots and returns the winner based on total payoff.
     """
     bot1_name = type(bot1).__name__
     bot2_name = type(bot2).__name__
