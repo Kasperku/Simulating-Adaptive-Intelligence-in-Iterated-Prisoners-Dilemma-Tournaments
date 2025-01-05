@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Match,Bot Name,Total Payoff,Matches Played,Cooperation Rate
 Match 1,QLearningAgent,536650.00,200000,81.35%
 Match 1,TFTBot,535745.00,200000,81.44%
@@ -37,3 +38,74 @@ Average,DefectBot,1930712.00,1000000,0.00%
 Average,CooperateBot,1833252.00,1000000,100.00%
 Average,GrimBot,2243936.00,1000000,60.00%
 Average,TFT90Bot,2512025.00,1000000,78.83%
+=======
+Tournament,Bot Name,Total Payoff,Matches Played,Cooperation Rate
+Tournament 1,GrimBot,439690.00,1000,60.20%
+Tournament 1,QLearningBot1,378763.00,1000,0.07%
+Tournament 1,TFTBot,439694.00,1000,60.22%
+Tournament 1,TFT90Bot,431635.00,1000,64.22%
+Tournament 1,DefectBot,378312.00,1000,0.00%
+Tournament 1,CooperateBot,360075.00,1000,100.00%
+Tournament 2,GrimBot,519188.00,1000,79.91%
+Tournament 2,QLearningBot1,457078.00,1000,19.88%
+Tournament 2,TFTBot,439676.00,1000,60.21%
+Tournament 2,TFT90Bot,431631.00,1000,64.23%
+Tournament 2,DefectBot,378468.00,1000,0.00%
+Tournament 2,CooperateBot,360066.00,1000,100.00%
+Tournament 3,GrimBot,439690.00,1000,60.20%
+Tournament 3,QLearningBot1,457524.00,1000,20.05%
+Tournament 3,TFTBot,519781.00,1000,80.09%
+Tournament 3,TFT90Bot,431714.00,1000,64.20%
+Tournament 3,DefectBot,378428.00,1000,0.00%
+Tournament 3,CooperateBot,360087.00,1000,100.00%
+Tournament 4,GrimBot,439710.00,1000,60.20%
+Tournament 4,QLearningBot1,378025.00,1000,0.07%
+Tournament 4,TFTBot,439659.00,1000,60.21%
+Tournament 4,TFT90Bot,431819.00,1000,64.16%
+Tournament 4,DefectBot,378440.00,1000,0.00%
+Tournament 4,CooperateBot,360075.00,1000,100.00%
+Tournament 5,GrimBot,439686.00,1000,60.20%
+Tournament 5,QLearningBot1,377963.00,1000,0.07%
+Tournament 5,TFTBot,439680.00,1000,60.21%
+Tournament 5,TFT90Bot,431877.00,1000,64.11%
+Tournament 5,DefectBot,378180.00,1000,0.00%
+Tournament 5,CooperateBot,360087.00,1000,100.00%
+Tournament 6,GrimBot,439700.00,1000,60.20%
+Tournament 6,QLearningBot1,441530.00,1000,20.03%
+Tournament 6,TFTBot,439657.00,1000,60.21%
+Tournament 6,TFT90Bot,515776.00,1000,82.09%
+Tournament 6,DefectBot,378456.00,1000,0.00%
+Tournament 6,CooperateBot,360087.00,1000,100.00%
+Tournament 7,GrimBot,439668.00,1000,60.20%
+Tournament 7,QLearningBot1,457333.00,1000,19.99%
+Tournament 7,TFTBot,519668.00,1000,80.05%
+Tournament 7,TFT90Bot,431746.00,1000,64.17%
+Tournament 7,DefectBot,378232.00,1000,0.00%
+Tournament 7,CooperateBot,360081.00,1000,100.00%
+Tournament 8,GrimBot,519270.00,1000,79.94%
+Tournament 8,QLearningBot1,456757.00,1000,19.90%
+Tournament 8,TFTBot,439682.00,1000,60.22%
+Tournament 8,TFT90Bot,431723.00,1000,64.19%
+Tournament 8,DefectBot,378532.00,1000,0.00%
+Tournament 8,CooperateBot,360066.00,1000,100.00%
+Tournament 9,GrimBot,439684.00,1000,60.20%
+Tournament 9,QLearningBot1,378025.00,1000,0.06%
+Tournament 9,TFTBot,439661.00,1000,60.21%
+Tournament 9,TFT90Bot,431858.00,1000,64.12%
+Tournament 9,DefectBot,378140.00,1000,0.00%
+Tournament 9,CooperateBot,360063.00,1000,100.00%
+Tournament 10,GrimBot,439726.00,1000,60.20%
+Tournament 10,QLearningBot1,377903.00,1000,0.06%
+Tournament 10,TFTBot,439657.00,1000,60.21%
+Tournament 10,TFT90Bot,431814.00,1000,64.13%
+Tournament 10,DefectBot,378372.00,1000,0.00%
+Tournament 10,CooperateBot,360093.00,1000,100.00%
+,,,,
+OVERALL AVERAGES,,,,
+Average,GrimBot,455601.20,1000.00,64.15%
+Average,QLearningBot1,416090.10,1000.00,10.02%
+Average,TFTBot,455681.50,1000.00,64.18%
+Average,TFT90Bot,440159.30,1000.00,65.96%
+Average,DefectBot,378356.00,1000.00,0.00%
+Average,CooperateBot,360078.00,1000.00,100.00%
+>>>>>>> 3ebe09be9b2787c4ba8fa45cb5c48743fbe4cc23
