@@ -17,7 +17,7 @@ def export_tournament_stats(aggregate_stats: Dict, tournament_stats: List[Dict],
     rows = []
     
     # Add header row
-    headers = ['Match', 'Bot Name', 'Total Payoff', 'Matches Played', 'Cooperation Rate']
+    headers = ['Match', 'Bot Name', 'Average Payoff', 'Matches Played', 'Cooperation Rate']
     rows.append(headers)
     
     # Add data for each match
@@ -25,11 +25,12 @@ def export_tournament_stats(aggregate_stats: Dict, tournament_stats: List[Dict],
         for bot_name, stats in match_result.items():
             total_actions = stats[COOPERATE_COUNT] + stats[DEFECT_COUNT]
             coop_rate = stats[COOPERATE_COUNT] / total_actions if total_actions > 0 else 0
+            avg_payoff = stats[TOTAL_PAYOFF] / stats[MATCHES_PLAYED] if stats[MATCHES_PLAYED] > 0 else 0
             
             row = [
                 f"Match {match_num + 1}",
                 bot_name,
-                f"{stats[TOTAL_PAYOFF]:.2f}",
+                f"{avg_payoff:.2f}",
                 f"{stats[MATCHES_PLAYED]}",
                 f"{coop_rate:.2%}"
             ]
@@ -43,11 +44,12 @@ def export_tournament_stats(aggregate_stats: Dict, tournament_stats: List[Dict],
     for bot_name, stats in aggregate_stats.items():
         total_actions = stats[COOPERATE_COUNT] + stats[DEFECT_COUNT]
         avg_coop_rate = stats[COOPERATE_COUNT] / total_actions if total_actions > 0 else 0
+        avg_payoff = stats[TOTAL_PAYOFF] / stats[MATCHES_PLAYED] if stats[MATCHES_PLAYED] > 0 else 0
         
         row = [
             'Average',
             bot_name,
-            f"{stats[TOTAL_PAYOFF]:.2f}",
+            f"{avg_payoff:.2f}",
             f"{stats[MATCHES_PLAYED]}",
             f"{avg_coop_rate:.2%}"
         ]

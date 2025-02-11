@@ -21,7 +21,7 @@ class QTable:
             actions (List[str]): The possible actions, aka either COOPERATE or DEFECT or None
         """
         self.table = {
-            None: {COOPERATE: 0.0, DEFECT: 0.0},  # Add None state
+            None: {COOPERATE: 0.0, DEFECT: 0.0},  
             COOPERATE: {COOPERATE: 0.0, DEFECT: 0.0},
             DEFECT: {COOPERATE: 0.0, DEFECT: 0.0}
         }
