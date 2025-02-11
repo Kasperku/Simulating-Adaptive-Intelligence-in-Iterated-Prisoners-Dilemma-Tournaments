@@ -1,0 +1,39 @@
+Match,Bot Name,Average Payoff,Matches Played,Cooperation Rate
+Match 1,QLearningAgent,2.71,200000,82.58%
+Match 1,TFTBot,2.70,200000,82.67%
+Match 2,QLearningAgent,0.95,200000,5.43%
+Match 2,DefectBot,1.22,200000,0.00%
+Match 3,QLearningAgent,4.89,200000,5.44%
+Match 3,CooperateBot,0.16,200000,100.00%
+Match 4,QLearningAgent,0.95,200000,5.44%
+Match 4,GrimBot,1.22,200000,0.00%
+Match 5,QLearningAgent,2.78,200000,83.12%
+Match 5,TFT90Bot,2.69,200000,84.88%
+Match 6,TFTBot,0.99,200000,0.50%
+Match 6,DefectBot,1.02,200000,0.00%
+Match 7,TFTBot,3.00,200000,100.00%
+Match 7,CooperateBot,3.00,200000,100.00%
+Match 8,TFTBot,3.00,200000,100.00%
+Match 8,GrimBot,3.00,200000,100.00%
+Match 9,TFTBot,3.00,200000,100.00%
+Match 9,TFT90Bot,3.00,200000,100.00%
+Match 10,DefectBot,5.00,200000,0.00%
+Match 10,CooperateBot,0.00,200000,100.00%
+Match 11,DefectBot,1.00,200000,0.00%
+Match 11,GrimBot,1.00,200000,0.00%
+Match 12,DefectBot,1.42,200000,0.00%
+Match 12,TFT90Bot,0.90,200000,10.41%
+Match 13,CooperateBot,3.00,200000,100.00%
+Match 13,GrimBot,3.00,200000,100.00%
+Match 14,CooperateBot,3.00,200000,100.00%
+Match 14,TFT90Bot,3.00,200000,100.00%
+Match 15,GrimBot,3.00,200000,100.00%
+Match 15,TFT90Bot,3.00,200000,100.00%
+,,,,
+TOURNAMENT AVERAGES,,,,
+Average,QLearningAgent,2.45,1000000,36.40%
+Average,TFTBot,2.54,1000000,76.63%
+Average,DefectBot,1.93,1000000,0.00%
+Average,CooperateBot,1.83,1000000,100.00%
+Average,GrimBot,2.24,1000000,60.00%
+Average,TFT90Bot,2.52,1000000,79.06%

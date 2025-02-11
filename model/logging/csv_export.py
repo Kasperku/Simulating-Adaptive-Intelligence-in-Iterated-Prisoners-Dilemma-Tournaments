@@ -2,7 +2,7 @@ import csv
 from typing import Dict, List
 from model.constants import *
 
-def export_tournament_stats(aggregate_stats: Dict, tournament_stats: List[Dict], num_tournaments: int, filename: str = "tournament_stats.csv"):
+def export_tournament_stats(aggregate_stats: Dict, tournament_stats: List[Dict], num_tournaments: int, filename: str = "analysis_output/tournament_stats.csv"):
     """
     Exports the tournament statistics to a CSV file
     

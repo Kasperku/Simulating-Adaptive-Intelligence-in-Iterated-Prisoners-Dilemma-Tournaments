@@ -8,6 +8,7 @@ from model.bots.TFT90Bot import TFT90Bot
 from model.constants import *
 from model.logging.InteractionLogger import InteractionLogger
 from model.logging.csv_export import export_tournament_stats
+from model.stat_analysis.performance_analyzer import PerformanceAnalyzer
 
 
 def play_game(bot1, bot2, discount_factor, logger, game_number, stats):
@@ -127,13 +128,18 @@ def run_round_robin():
             # Reset bots at the end of each round
             reset_bots(bot1, bot2)
     
-    # Export statistics
-    export_tournament_stats(aggregate_stats, tournament_stats, 1)
-    print("\nSummary statistics have been exported to tournament_stats.csv")
+    # Export statistics to CSV in analysis_output directory
+    export_tournament_stats(aggregate_stats, tournament_stats, 1, 'analysis_output/tournament_stats.csv')
+    print("\nSummary statistics have been exported to analysis_output/tournament_stats.csv")
     
-    # Export detailed log
-    logger.export_to_csv('qlearning_detailed_log.csv')
-    print("Detailed Q-learning interactions have been exported to qlearning_detailed_log.csv")
+    # Run analysis and generate visualizations
+    analyzer = PerformanceAnalyzer(tournament_stats, aggregate_stats)
+    analyzer.analyze_all()
+    print("Analysis plots have been generated in the analysis_output directory")
+    
+    # Export detailed log to analysis_output directory
+    logger.export_to_csv('analysis_output/qlearning_detailed_log.csv')
+    print("Detailed Q-learning interactions have been exported to analysis_output/qlearning_detailed_log.csv")
 
 # HELPERS
 def initialize_Q_table_for_agent(bot, opponent_name):
