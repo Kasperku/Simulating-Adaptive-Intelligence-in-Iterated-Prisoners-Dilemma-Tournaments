@@ -1,4 +1,4 @@
-# Iterated prisoners dilemma tournament
+# How well do Q-Learning Agents perform in Prisoner's Delimma Tournament?
 
 ## Sensitivity Analysis of payoff dynamics in a Prisoner's dilemma tournament played by Adaptive AI and other traditional strategies
 
